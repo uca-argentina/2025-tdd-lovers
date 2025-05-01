@@ -6,13 +6,42 @@ Class {
 }
 
 { #category : 'tests' }
-DiceTests >> testWhenTheDiceHasAtLeastTwoFacesThenValid [
+DiceTests >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMessage [
 
-	self assert: (Dice withSides: 2).
+	self
+		should: anErrorBlock
+		raise: anErrorClass
+		withExceptionDo: [ :error |
+		self assert: error messageText equals: anErrorMessage ]
 ]
 
 { #category : 'tests' }
-DiceTests >> testWhenTheDiceHasLessThanTwoFacesThenInvalid [
+DiceTests >> testWhenRollingADiceWithFourSidesThenTheResultIsBetweenOneAndFour [
 
-	self deny: (Dice withSides: 1).
+	| possibleSides rolledSide aDiceWithFourSides fourSides |
+	fourSides := 4.
+	possibleSides := #( 1 2 3 4 ) asOrderedCollection.
+	aDiceWithFourSides := Dice withSides: fourSides.
+	rolledSide := aDiceWithFourSides roll.
+	self assert:
+		(possibleSides anySatisfy: [ :aSide | aSide = rolledSide ])
+]
+
+{ #category : 'tests' }
+DiceTests >> testWhenTheDiceHasAtLeastTwoSidesThenValid [
+
+	| twoSides |
+	twoSides := 2.
+	self assert: (Dice withSides: twoSides) roll isNumber
+]
+
+{ #category : 'tests' }
+DiceTests >> testWhenTheDiceHasLessThanTwoSidesThenInvalid [
+
+	| oneSide |
+	oneSide := 1.
+	self
+		should: [ Dice withSides: oneSide ]
+		raise: Error
+		withMessageText: 'Dice must have at least two sides.'
 ]
