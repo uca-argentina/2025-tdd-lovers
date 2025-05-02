@@ -1,3 +1,6 @@
+"
+This represent a dice
+"
 Class {
 	#name : 'Dice',
 	#superclass : 'Object',
