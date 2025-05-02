@@ -5,13 +5,14 @@ Class {
 	#package : 'IngSoft2-Tests'
 }
 
-{ #category : 'tests' }
-BoardTest >> testBanana [
+{ #category : 'asserting' }
+BoardTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMessage [
 
-	| aBoard aShip |
-	aBoard := Board with: 20.
-	aShip := Ship with: aBoard.
-	self assert: (aShip move: 1) equals: 1
+	self
+		should: anErrorBlock
+		raise: anErrorClass
+		withExceptionDo: [ :error |
+		self assert: error messageText equals: anErrorMessage ]
 ]
 
 { #category : 'tests' }
@@ -19,7 +20,10 @@ BoardTest >> testWhenABoardIsCreatedWithInvalidDimentionThenInvalid [
 
 	| aBoard aShip aDimention |
 	aDimention := -1.
-	self should: [Board with: aDimention] raise: Error withExceptionDo: [:error | self assert: error messageText equals: 'Board must have at least one sides'].
+	self
+		should: [ Board with: aDimention ]
+		raise: Error
+		withMessageText: 'Board must have at least one sides'
 ]
 
 { #category : 'tests' }
