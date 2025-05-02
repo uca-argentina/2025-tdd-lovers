@@ -22,3 +22,10 @@ Board >> initializeWith: aDimention [
 
 	dimention := aDimention
 ]
+
+{ #category : 'testing' }
+Board >> validate: aPosition [
+
+	aPosition >= dimention ifTrue: [ ^ 'You win the game' ].
+	^ aPosition
+]

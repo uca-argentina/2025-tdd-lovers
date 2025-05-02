@@ -5,7 +5,8 @@ Class {
 	#name : 'Ship',
 	#superclass : 'Object',
 	#instVars : [
-		'board'
+		'board',
+		'position'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -20,11 +21,14 @@ Ship class >> with: aBoard [
 { #category : 'initialization' }
 Ship >> initializeWith: aBoard [
 
-	board := aBoard
+	board := aBoard.
+
+	position := 0
 ]
 
 { #category : 'accessing' }
 Ship >> move: aPosition [
 
-	^ 1
+	position := board validate: aPosition .
+	^ position
 ]

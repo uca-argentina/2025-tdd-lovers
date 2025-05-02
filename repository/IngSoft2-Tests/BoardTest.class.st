@@ -22,3 +22,21 @@ BoardTest >> testWhenAPlayerDoAMoveOfOneSquareThenItsPositionIsOne [
 	aShip := Ship with: aBoard.
 	self assert: (aShip move: 1) equals: 1
 ]
+
+{ #category : 'tests' }
+BoardTest >> testWhenAPlayerDoOneMoveOfTwoSquaresThenItsPositionIsTwo [
+
+	| aBoard aShip |
+	aBoard := Board with: 20.
+	aShip := Ship with: aBoard.
+	self assert: (aShip move: 2) equals: 2
+]
+
+{ #category : 'tests' }
+BoardTest >> testWhenAPlayerReachTheFinalSquare [
+
+	| aBoard aShip |
+	aBoard := Board with: 3.
+	aShip := Ship with: aBoard.
+	self assert: (aShip move: 3) equals: 'You win the game'
+]
