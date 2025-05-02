@@ -15,7 +15,7 @@ Class {
 Board class >> numberOfDimentionIsValid: aDimention [
 
 	aDimention < 2 ifTrue: [
-		Error signal: 'Board must have at least one sides' ]
+		Error signal: 'Board must have at least two squares' ]
 ]
 
 { #category : 'instance creation' }

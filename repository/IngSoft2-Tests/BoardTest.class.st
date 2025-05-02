@@ -16,49 +16,57 @@ BoardTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMe
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenABoardIsCreatedWithInvalidDimentionThenInvalid [
+BoardTest >> testWhenABoardIsCreatedWithLessThanTwoSquaresThenInvalid [
 
-	| aBoard aShip aDimention |
+	|aDimention |
 	aDimention := -1.
 	self
 		should: [ Board with: aDimention ]
 		raise: Error
-		withMessageText: 'Board must have at least one sides'
+		withMessageText: 'Board must have at least two squares'
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenAPlayerDoAMoveOfOneSquareThenItsPositionIsOne [
+BoardTest >> testWhenAPlayerMakeAMoveOfOneSquareThenItsPositionIsOne [
 
-	| aBoard aShip |
-	aBoard := Board with: 20.
+	| aBoard aShip twentySquares numberRoll |
+	twentySquares := 20.
+	aBoard := Board with: twentySquares.
 	aShip := Ship with: aBoard.
-	self assert: (aShip move: 1) equals: 1
+	numberRoll:= 1.
+	self assert: (aShip move: numberRoll ) equals: 1
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenAPlayerDoOneMoveOfTwoSquaresThenItsPositionIsTwo [
+BoardTest >> testWhenAPlayerMakeOneMoveOfTwoSquaresThenItsPositionIsTwo [
 
-	| aBoard aShip |
-	aBoard := Board with: 20.
+	| aBoard aShip twentySquares numberRoll |
+	twentySquares := 20.
+	aBoard := Board with: twentySquares.
 	aShip := Ship with: aBoard.
-	self assert: (aShip move: 2) equals: 2
+	numberRoll := 2.
+	self assert: (aShip move: numberRoll) equals: 2
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenAPlayerDoTwoMovesOfOneSquareThenItsPositionIsTwo [
+BoardTest >> testWhenAPlayerMakesTwoMovesOfOneSquareThenItsPositionIsTwo [
 
-	| aBoard aShip |
-	aBoard := Board with: 20.
+	| aBoard aShip twentySquares numberRoll |
+	twentySquares := 20.
+	aBoard := Board with: twentySquares.
 	aShip := Ship with: aBoard.
-	aShip move: 1.
-	self assert: (aShip move: 1) equals: 2
+	numberRoll := 1.
+	aShip move: numberRoll.
+	self assert: (aShip move: numberRoll) equals: 2
 ]
 
 { #category : 'tests' }
 BoardTest >> testWhenAPlayerReachTheFinalSquare [
 
-	| aBoard aShip |
-	aBoard := Board with: 3.
+	| aBoard aShip threeSquares numberRoll |
+	threeSquares := 3.
+	aBoard := Board with: threeSquares.
 	aShip := Ship with: aBoard.
-	self assert: (aShip move: 3) equals: 'You win the game'
+	numberRoll := 3.
+	self assert: (aShip move: numberRoll) equals: 'You win the game'
 ]
