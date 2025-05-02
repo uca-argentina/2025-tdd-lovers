@@ -11,9 +11,17 @@ Class {
 	#package : 'IngSoft2-Model'
 }
 
+{ #category : 'creation' }
+Board class >> numberOfDimentionIsValid: aDimention [
+
+	aDimention < 2 ifTrue: [
+		Error signal: 'Board must have at least one sides' ]
+]
+
 { #category : 'instance creation' }
 Board class >> with: aDimention [
 
+	self numberOfDimentionIsValid: aDimention.
 	^ self new initializeWith: aDimention
 ]
 

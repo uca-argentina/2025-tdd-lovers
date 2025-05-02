@@ -29,6 +29,8 @@ Ship >> initializeWith: aBoard [
 { #category : 'accessing' }
 Ship >> move: aPosition [
 
-	position := board validate: aPosition .
+	| aNewPosition |
+	aNewPosition := position + aPosition.
+	position := board validate: aNewPosition.
 	^ position
 ]

@@ -15,6 +15,14 @@ BoardTest >> testBanana [
 ]
 
 { #category : 'tests' }
+BoardTest >> testWhenABoardIsCreatedWithInvalidDimentionThenInvalid [
+
+	| aBoard aShip aDimention |
+	aDimention := -1.
+	self should: [Board with: aDimention] raise: Error withExceptionDo: [:error | self assert: error messageText equals: 'Board must have at least one sides'].
+]
+
+{ #category : 'tests' }
 BoardTest >> testWhenAPlayerDoAMoveOfOneSquareThenItsPositionIsOne [
 
 	| aBoard aShip |
@@ -30,6 +38,16 @@ BoardTest >> testWhenAPlayerDoOneMoveOfTwoSquaresThenItsPositionIsTwo [
 	aBoard := Board with: 20.
 	aShip := Ship with: aBoard.
 	self assert: (aShip move: 2) equals: 2
+]
+
+{ #category : 'tests' }
+BoardTest >> testWhenAPlayerDoTwoMovesOfOneSquareThenItsPositionIsTwo [
+
+	| aBoard aShip |
+	aBoard := Board with: 20.
+	aShip := Ship with: aBoard.
+	aShip move: 1.
+	self assert: (aShip move: 1) equals: 2
 ]
 
 { #category : 'tests' }
