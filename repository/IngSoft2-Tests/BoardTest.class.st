@@ -29,20 +29,22 @@ BoardTest >> testWhenABoardIsCreatedWithLessThanTwoSquaresThenInvalid [
 { #category : 'tests' }
 BoardTest >> testWhenAPlayerMakesAMoveOfOneSquareThenItsPositionIsOne [
 
-	| aBoard aShip twentySquares numberRoll |
+	| aBoard aShip twentySquares numberRoll aBlackHole |
 	twentySquares := 20.
-	aBoard := Board with: twentySquares.
+	aBlackHole := BlackHole between: 2 and: 10.
+	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship with: aBoard.
-	numberRoll:= 1.
-	self assert: (aShip move: numberRoll ) equals: 1
+	numberRoll := 1.
+	self assert: (aShip move: numberRoll) equals: 1
 ]
 
 { #category : 'tests' }
 BoardTest >> testWhenAPlayerMakesOneMoveOfTwoSquaresThenItsPositionIsTwo [
 
-	| aBoard aShip twentySquares numberRoll |
+	| aBoard aShip twentySquares numberRoll aBlackHole |
 	twentySquares := 20.
-	aBoard := Board with: twentySquares.
+	aBlackHole := BlackHole between: 3 and: 10.
+	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship with: aBoard.
 	numberRoll := 2.
 	self assert: (aShip move: numberRoll) equals: 2
@@ -51,9 +53,10 @@ BoardTest >> testWhenAPlayerMakesOneMoveOfTwoSquaresThenItsPositionIsTwo [
 { #category : 'tests' }
 BoardTest >> testWhenAPlayerMakesTwoMovesOfOneSquareThenItsPositionIsTwo [
 
-	| aBoard aShip twentySquares numberRoll |
+	| aBoard aShip twentySquares numberRoll aBlackHole |
 	twentySquares := 20.
-	aBoard := Board with: twentySquares.
+	aBlackHole := BlackHole between: 3 and: 10.
+	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship with: aBoard.
 	numberRoll := 1.
 	aShip move: numberRoll.
