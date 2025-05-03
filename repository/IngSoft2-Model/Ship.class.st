@@ -12,7 +12,7 @@ Class {
 	#package : 'IngSoft2-Model'
 }
 
-{ #category : 'instance creation' }
+{ #category : 'creation' }
 Ship class >> with: aBoard [
 
 	^ self new initializeWith: aBoard

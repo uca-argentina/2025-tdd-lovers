@@ -12,12 +12,28 @@ Class {
 	#package : 'IngSoft2-Model'
 }
 
-{ #category : 'comparing' }
+{ #category : 'creation' }
 BlackHole class >> between: aBeginning and: anEnd [ 
+	self cannotBeginInANegative: aBeginning.
+	self cannotEndInANegative: anEnd.
 	^ self new initializeBetween: aBeginning and: anEnd.
 ]
 
-{ #category : 'accessing' }
+{ #category : 'validation' }
+BlackHole class >> cannotBeginInANegative: anEnd [
+
+	anEnd <= 0 ifTrue: [
+		Error signal: 'A Black Hole cannot begin in a negative square' ]
+]
+
+{ #category : 'validation' }
+BlackHole class >> cannotEndInANegative: anEnd [
+
+	anEnd <= 0 ifTrue: [
+		Error signal: 'A Black Hole cannot end in a negative square' ]
+]
+
+{ #category : 'comparing' }
 BlackHole >> hasAnEndingAt: aPosition [
 
 	aPosition == beginning ifTrue: [ ^ end ].

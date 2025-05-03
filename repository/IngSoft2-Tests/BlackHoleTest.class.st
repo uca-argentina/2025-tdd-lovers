@@ -19,9 +19,18 @@ BlackHoleTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErr
 BlackHoleTest >> testWhenABlackHoleIsCreatedWithNegativeBeginningThenInvalid [
 
 	self
-		should: [ BlackHole between: 2 and: 5 ]
+		should: [ BlackHole between: -2 and: 5 ]
 		raise: Error
-		withMessageText: 'A Black Hole cannot begin in a negative space'
+		withMessageText: 'A Black Hole cannot begin in a negative square'
+]
+
+{ #category : 'tests' }
+BlackHoleTest >> testWhenABlackHoleIsCreatedWithNegativeEndThenInvalid [
+
+	self
+		should: [ BlackHole between: 2 and: -5 ]
+		raise: Error
+		withMessageText: 'A Black Hole cannot end in a negative square'
 ]
 
 { #category : 'tests' }

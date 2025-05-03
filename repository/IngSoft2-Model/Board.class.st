@@ -12,21 +12,21 @@ Class {
 	#package : 'IngSoft2-Model'
 }
 
-{ #category : 'creation' }
+{ #category : 'validation' }
 Board class >> numberOfDimentionIsValid: aDimention [
 
 	aDimention < 2 ifTrue: [
 		Error signal: 'Board must have at least two squares' ]
 ]
 
-{ #category : 'instance creation' }
+{ #category : 'creation' }
 Board class >> with: aDimention [
 
 	self numberOfDimentionIsValid: aDimention.
 	^ self new initializeWith: aDimention
 ]
 
-{ #category : 'instance creation' }
+{ #category : 'creation' }
 Board class >> with: aDimention and: aBlackHole [
 
 	self numberOfDimentionIsValid: aDimention.
@@ -50,5 +50,5 @@ Board >> initializeWith: aDimention and: aBlackHole [
 Board >> validate: aPosition [
 
 	aPosition >= dimention ifTrue: [ ^ 'You win the game' ].
-	^ blackHole hasAnEndingAt: aPosition.
+	^ blackHole hasAnEndingAt: aPosition
 ]
