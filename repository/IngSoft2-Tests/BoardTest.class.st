@@ -16,6 +16,32 @@ BoardTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMe
 ]
 
 { #category : 'tests' }
+BoardTest >> testWhenABoardIsCreatedAndEndsBeforeTheEndingOfItsBlackHoleThenInvalid [
+
+	| twentySquares aBlackHole |
+	twentySquares := 20.
+	aBlackHole := BlackHole between: 15 and: 30.
+	self
+		should: [ Board with: twentySquares and: aBlackHole ]
+		raise: Error
+		withMessageText:
+		'A Board cannot end before the ending of its Black Hole'
+]
+
+{ #category : 'tests' }
+BoardTest >> testWhenABoardIsCreatedAndTheBlackHoleFallsOutsideOfTheDimentionThenInvalid [
+
+	| twentySquares aBlackHole |
+	twentySquares := 20.
+	aBlackHole := BlackHole between: 25 and: 30.
+	self
+		should: [ Board with: twentySquares and: aBlackHole ]
+		raise: Error
+		withMessageText:
+		'A Black Hole cannot fall outside of its Boards dimention'
+]
+
+{ #category : 'tests' }
 BoardTest >> testWhenABoardIsCreatedWithLessThanTwoSquaresThenInvalid [
 
 	|aDimention |

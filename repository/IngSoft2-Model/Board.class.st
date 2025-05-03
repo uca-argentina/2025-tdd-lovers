@@ -19,6 +19,18 @@ Board class >> numberOfDimentionIsValid: aDimention [
 		Error signal: 'Board must have at least two squares' ]
 ]
 
+{ #category : 'validation' }
+Board class >> validate: aBlackHole fallsInto: aDimention [
+
+	aBlackHole fallsInto: aDimention
+]
+
+{ #category : 'validation' }
+Board class >> validate: aDimention isSmallerThanTheEndingOf: aBlackHole [
+
+	aBlackHole endsBefore: aDimention
+]
+
 { #category : 'creation' }
 Board class >> with: aDimention [
 
@@ -30,6 +42,8 @@ Board class >> with: aDimention [
 Board class >> with: aDimention and: aBlackHole [
 
 	self numberOfDimentionIsValid: aDimention.
+	self validate: aBlackHole fallsInto: aDimention.
+	self validate: aDimention isSmallerThanTheEndingOf: aBlackHole.
 	^ self new initializeWith: aDimention and: aBlackHole
 ]
 

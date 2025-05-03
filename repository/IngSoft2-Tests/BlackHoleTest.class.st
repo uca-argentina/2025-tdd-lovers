@@ -34,6 +34,16 @@ BlackHoleTest >> testWhenABlackHoleIsCreatedWithNegativeEndThenInvalid [
 ]
 
 { #category : 'tests' }
+BlackHoleTest >> testWhenABlackHoleIsCreatedWithTheBeginningLargerThanTheEndingThenInvalid [
+
+	self
+		should: [ BlackHole between: 10 and: 5 ]
+		raise: Error
+		withMessageText:
+		'A Black Hole cannot be created with the beginning larger than the ending'
+]
+
+{ #category : 'tests' }
 BlackHoleTest >> testWhenAShipLandsOnTheBeginningOfABlackHoleThenItEndsUpAtTheEndOfIt [
 
 	| aBoard aShip twentySquares numberRolled aBlackHole|
