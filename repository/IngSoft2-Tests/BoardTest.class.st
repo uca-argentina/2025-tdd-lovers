@@ -27,7 +27,7 @@ BoardTest >> testWhenABoardIsCreatedWithLessThanTwoSquaresThenInvalid [
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenAPlayerMakeAMoveOfOneSquareThenItsPositionIsOne [
+BoardTest >> testWhenAPlayerMakesAMoveOfOneSquareThenItsPositionIsOne [
 
 	| aBoard aShip twentySquares numberRoll |
 	twentySquares := 20.
@@ -38,7 +38,7 @@ BoardTest >> testWhenAPlayerMakeAMoveOfOneSquareThenItsPositionIsOne [
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenAPlayerMakeOneMoveOfTwoSquaresThenItsPositionIsTwo [
+BoardTest >> testWhenAPlayerMakesOneMoveOfTwoSquaresThenItsPositionIsTwo [
 
 	| aBoard aShip twentySquares numberRoll |
 	twentySquares := 20.
@@ -61,7 +61,7 @@ BoardTest >> testWhenAPlayerMakesTwoMovesOfOneSquareThenItsPositionIsTwo [
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenAPlayerReachTheFinalSquare [
+BoardTest >> testWhenAPlayerReachesTheFinalSquare [
 
 	| aBoard aShip threeSquares numberRoll |
 	threeSquares := 3.

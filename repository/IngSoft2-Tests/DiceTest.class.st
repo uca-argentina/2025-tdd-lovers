@@ -1,12 +1,12 @@
 Class {
-	#name : 'DiceTests',
+	#name : 'DiceTest',
 	#superclass : 'TestCase',
 	#category : 'IngSoft2-Tests',
 	#package : 'IngSoft2-Tests'
 }
 
 { #category : 'tests' }
-DiceTests >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMessage [
+DiceTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMessage [
 
 	self
 		should: anErrorBlock
@@ -16,7 +16,7 @@ DiceTests >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMe
 ]
 
 { #category : 'tests' }
-DiceTests >> testWhenRollingADiceWithFourSidesThenTheResultIsBetweenOneAndFour [
+DiceTest >> testWhenRollingADiceWithFourSidesThenTheResultIsBetweenOneAndFour [
 
 	| possibleSides rolledSide aDiceWithFourSides fourSides |
 	fourSides := 4.
@@ -28,7 +28,7 @@ DiceTests >> testWhenRollingADiceWithFourSidesThenTheResultIsBetweenOneAndFour [
 ]
 
 { #category : 'tests' }
-DiceTests >> testWhenTheDiceHasAtLeastTwoSidesThenValid [
+DiceTest >> testWhenTheDiceHasAtLeastTwoSidesThenValid [
 
 	| twoSides |
 	twoSides := 2.
@@ -36,7 +36,7 @@ DiceTests >> testWhenTheDiceHasAtLeastTwoSidesThenValid [
 ]
 
 { #category : 'tests' }
-DiceTests >> testWhenTheDiceHasLessThanTwoSidesThenInvalid [
+DiceTest >> testWhenTheDiceHasLessThanTwoSidesThenInvalid [
 
 	| oneSide |
 	oneSide := 1.
