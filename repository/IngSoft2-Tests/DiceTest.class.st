@@ -16,6 +16,15 @@ DiceTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMes
 ]
 
 { #category : 'tests' }
+DiceTest >> testWhenADiceIsSetToRollASideThenItRollsThatSide [
+
+	| aSetDice sideToRoll |
+	sideToRoll := 3.
+	aSetDice := SetDice toRoll: sideToRoll.
+	self assert: aSetDice roll equals: sideToRoll
+]
+
+{ #category : 'tests' }
 DiceTest >> testWhenRollingADiceWithFourSidesThenTheResultIsBetweenOneAndFour [
 
 	| possibleSides rolledSide aDiceWithFourSides fourSides |
