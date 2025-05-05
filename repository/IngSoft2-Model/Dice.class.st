@@ -5,7 +5,8 @@ Class {
 	#name : 'Dice',
 	#superclass : 'Object',
 	#instVars : [
-		'numberOfSides'
+		'numberOfSides',
+		'initialSide'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -18,6 +19,11 @@ Dice class >> numberOfSidesGreaterThanTwo: numberOfSides [
 ]
 
 { #category : 'creation' }
+Dice class >> withSide: aSide [ 
+	^ self new initializeWithSide: aSide.
+]
+
+{ #category : 'creation' }
 Dice class >> withSides: numberOfSides [
 	
 	self numberOfSidesGreaterThanTwo: numberOfSides.
@@ -25,13 +31,21 @@ Dice class >> withSides: numberOfSides [
 ]
 
 { #category : 'initialization' }
+Dice >> initializeWithSide: aSide [ 
+	
+	numberOfSides := aSide.
+	initialSide := aSide.
+]
+
+{ #category : 'initialization' }
 Dice >> initializeWithSides: sides [
 
-	numberOfSides := sides
+	numberOfSides := sides.
+	initialSide := 1.
 ]
 
 { #category : 'functions' }
 Dice >> roll [
 
-	^ (1 to: numberOfSides) atRandom
+	^ (initialSide to: numberOfSides) atRandom
 ]

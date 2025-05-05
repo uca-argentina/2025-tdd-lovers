@@ -46,23 +46,23 @@ BlackHoleTest >> testWhenABlackHoleIsCreatedWithTheBeginningLargerThanTheEndingT
 { #category : 'tests' }
 BlackHoleTest >> testWhenAShipLandsOnTheBeginningOfABlackHoleThenItEndsUpAtTheEndOfIt [
 
-	| aBoard aShip twentySquares numberRolled aBlackHole|
+	| aBoard aShip twentySquares aSetDice aBlackHole|
 	twentySquares := 20.
 	aBlackHole := BlackHole between: 2 and: 10.
 	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship with: aBoard.
-	numberRolled := 2.
-	self assert: (aShip move: numberRolled) equals: 10
+	aSetDice := SetDice toRoll: 2.
+	self assert: (aShip move: (aSetDice roll)) equals: 10
 ]
 
 { #category : 'tests' }
 BlackHoleTest >> testWhenAShipLandsOnTheEndOfABlackHoleThenItEndsUpAtTheBeginningOfIt [
 
-	| aBoard aShip twentySquares numberRolled aBlackHole|
+	| aBoard aShip twentySquares aSetDice aBlackHole|
 	twentySquares := 20.
 	aBlackHole := BlackHole between: 2 and: 5.
 	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship with: aBoard.
-	numberRolled := 5.
-	self assert: (aShip move: numberRolled) equals: 2
+	aSetDice := SetDice toRoll: 5.
+	self assert: (aShip move: (aSetDice roll)) equals: 2
 ]

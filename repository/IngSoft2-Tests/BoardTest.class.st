@@ -55,47 +55,47 @@ BoardTest >> testWhenABoardIsCreatedWithLessThanTwoSquaresThenInvalid [
 { #category : 'tests' }
 BoardTest >> testWhenAPlayerMakesAMoveOfOneSquareThenItsPositionIsOne [
 
-	| aBoard aShip twentySquares numberRoll aBlackHole |
+	| aBoard aShip twentySquares aSetDice aBlackHole |
 	twentySquares := 20.
 	aBlackHole := BlackHole between: 2 and: 10.
 	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship with: aBoard.
-	numberRoll := 1.
-	self assert: (aShip move: numberRoll) equals: 1
+	aSetDice := SetDice toRoll: 1.
+	self assert: (aShip move: (aSetDice roll)) equals: 1
 ]
 
 { #category : 'tests' }
 BoardTest >> testWhenAPlayerMakesOneMoveOfTwoSquaresThenItsPositionIsTwo [
 
-	| aBoard aShip twentySquares numberRoll aBlackHole |
+	| aBoard aShip twentySquares aSetDice aBlackHole |
 	twentySquares := 20.
 	aBlackHole := BlackHole between: 3 and: 10.
 	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship with: aBoard.
-	numberRoll := 2.
-	self assert: (aShip move: numberRoll) equals: 2
+	aSetDice := SetDice toRoll: 2.
+	self assert: (aShip move: (aSetDice roll)) equals: 2
 ]
 
 { #category : 'tests' }
 BoardTest >> testWhenAPlayerMakesTwoMovesOfOneSquareThenItsPositionIsTwo [
 
-	| aBoard aShip twentySquares numberRoll aBlackHole |
+	| aBoard aShip twentySquares aSetDice aBlackHole |
 	twentySquares := 20.
 	aBlackHole := BlackHole between: 3 and: 10.
 	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship with: aBoard.
-	numberRoll := 1.
-	aShip move: numberRoll.
-	self assert: (aShip move: numberRoll) equals: 2
+	aSetDice := SetDice toRoll: 1.
+	aShip move: aSetDice roll.
+	self assert: (aShip move: (aSetDice roll)) equals: 2
 ]
 
 { #category : 'tests' }
 BoardTest >> testWhenAPlayerReachesTheFinalSquare [
 
-	| aBoard aShip threeSquares numberRoll |
+	| aBoard aShip threeSquares aSetDice |
 	threeSquares := 3.
 	aBoard := Board with: threeSquares.
 	aShip := Ship with: aBoard.
-	numberRoll := 3.
-	self assert: (aShip move: numberRoll) equals: 'You win the game'
+	aSetDice := SetDice toRoll: 3.
+	self assert: (aShip move: (aSetDice roll)) equals: 'You win the game'
 ]
