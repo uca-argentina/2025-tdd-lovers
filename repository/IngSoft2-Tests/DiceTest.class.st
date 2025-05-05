@@ -21,7 +21,7 @@ DiceTest >> testWhenADiceIsSetToRollASideThenItRollsThatSide [
 	| aSetDice sideToRoll |
 	sideToRoll := 3.
 	aSetDice := SetDice toRoll: sideToRoll.
-	self assert: (aSetDice roll) equals: sideToRoll
+	self assert: aSetDice roll equals: sideToRoll
 ]
 
 { #category : 'tests' }
