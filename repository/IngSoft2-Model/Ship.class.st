@@ -6,7 +6,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'board',
-		'position'
+		'position',
+		'name'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
