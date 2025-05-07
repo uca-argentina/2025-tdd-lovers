@@ -16,7 +16,20 @@ GameTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMes
 ]
 
 { #category : 'tests' }
-GameTest >> testWhenAShipMovesOneSquareThenItsPositionChangesAccordingly [
+GameTest >> testWhenAPlayerReachesTheFinalSquare [
+
+	| aBoard aShip threeSquares aSetDice sideToRoll aBlackHole |
+	threeSquares := 3.
+	aBlackHole := BlackHole between: 1 and: 2.
+	aBoard := Board with: threeSquares and: aBlackHole.
+	aShip := Ship called: 'BlueShip'.
+	sideToRoll := 3.
+	aSetDice := SetDice toRoll: sideToRoll.
+	self assert: (aShip move: aSetDice roll on: aBoard ) equals: 'You win the game'
+]
+
+{ #category : 'tests' }
+GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 
 	| aBoard someShips someDices fiveSquares aBlackHole aShip aSetDice aGame |
 	fiveSquares := 5.
@@ -57,7 +70,7 @@ GameTest >> testWhenThereAreNotAnyShipsThenTheGameIsInvalid [
 	aBlackHole := BlackHole between: 1 and: 2.
 	aBoard := Board with: fiveSquares and: aBlackHole.
 	someShips := #(  ) asOrderedCollection.
-	aDice := Dice withSides: 2.
+	aDice := Dice with: 2.
 	someDices := #( aDice ) asOrderedCollection.
 	self
 		should: [ Game with: aBoard and: someShips and: someDices ]

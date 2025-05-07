@@ -19,26 +19,14 @@ Dice class >> numberOfSidesGreaterThanTwo: numberOfSides [
 ]
 
 { #category : 'creation' }
-Dice class >> withSide: aSide [ 
-	^ self new initializeWithSide: aSide.
-]
-
-{ #category : 'creation' }
-Dice class >> withSides: numberOfSides [
+Dice class >> with: numberOfSides [
 	
 	self numberOfSidesGreaterThanTwo: numberOfSides.
-	^ self new initializeWithSides: numberOfSides.
+	^ self new initializeWith: numberOfSides.
 ]
 
 { #category : 'initialization' }
-Dice >> initializeWithSide: aSide [ 
-	
-	numberOfSides := aSide.
-	initialSide := aSide.
-]
-
-{ #category : 'initialization' }
-Dice >> initializeWithSides: sides [
+Dice >> initializeWith: sides [
 
 	numberOfSides := sides.
 	initialSide := 1.

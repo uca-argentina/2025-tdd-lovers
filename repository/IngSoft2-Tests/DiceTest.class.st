@@ -30,7 +30,7 @@ DiceTest >> testWhenRollingADiceWithFourSidesThenTheResultIsBetweenOneAndFour [
 	| possibleSides rolledSide aDiceWithFourSides fourSides |
 	fourSides := 4.
 	possibleSides := #( 1 2 3 4 ) asOrderedCollection.
-	aDiceWithFourSides := Dice withSides: fourSides.
+	aDiceWithFourSides := Dice with: fourSides.
 	rolledSide := aDiceWithFourSides roll.
 	self assert:
 		(possibleSides anySatisfy: [ :aSide | aSide = rolledSide ])
@@ -41,7 +41,7 @@ DiceTest >> testWhenTheDiceHasAtLeastTwoSidesThenValid [
 
 	| twoSides |
 	twoSides := 2.
-	self assert: (Dice withSides: twoSides) roll isNumber
+	self assert: (Dice with: twoSides) roll isNumber
 ]
 
 { #category : 'tests' }
@@ -50,7 +50,7 @@ DiceTest >> testWhenTheDiceHasLessThanTwoSidesThenInvalid [
 	| oneSide |
 	oneSide := 1.
 	self
-		should: [ Dice withSides: oneSide ]
+		should: [ Dice with: oneSide ]
 		raise: Error
 		withMessageText: 'Dice must have at least two sides.'
 ]
