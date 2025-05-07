@@ -5,7 +5,6 @@ Class {
 	#name : 'Ship',
 	#superclass : 'Object',
 	#instVars : [
-		'board',
 		'position',
 		'name'
 	],
