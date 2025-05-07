@@ -46,12 +46,13 @@ Game >> initializeWith: aBoard and: someShips and: someDices [
 { #category : 'action' }
 Game >> nextTurn [
 
-	| shipToMove rolledNumber aux |
+	| shipToMove rolledNumber shipNewPosition |
 	shipToMove := ships removeFirst.
 	rolledNumber := self rollDices.
-	aux := shipToMove move: rolledNumber on: board.
+	shipNewPosition := shipToMove move: rolledNumber on: board.
 	ships add: shipToMove.
-	(aux = 'You win the game') ifTrue: [ ^ 'The game has ended.' ]
+	shipNewPosition = 'You win the game' ifTrue: [
+		^ 'The game has ended.' ]
 ]
 
 { #category : 'printing' }
