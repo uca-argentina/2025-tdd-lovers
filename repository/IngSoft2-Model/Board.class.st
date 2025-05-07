@@ -32,25 +32,12 @@ Board class >> validate: aDimention isSmallerThanTheEndingOf: aBlackHole [
 ]
 
 { #category : 'creation' }
-Board class >> with: aDimention [
-
-	self numberOfDimentionIsValid: aDimention.
-	^ self new initializeWith: aDimention
-]
-
-{ #category : 'creation' }
 Board class >> with: aDimention and: aBlackHole [
 
 	self numberOfDimentionIsValid: aDimention.
 	self validate: aBlackHole fallsInto: aDimention.
 	self validate: aDimention isSmallerThanTheEndingOf: aBlackHole.
 	^ self new initializeWith: aDimention and: aBlackHole
-]
-
-{ #category : 'initialization' }
-Board >> initializeWith: aDimention [
-
-	dimention := aDimention
 ]
 
 { #category : 'initialization' }

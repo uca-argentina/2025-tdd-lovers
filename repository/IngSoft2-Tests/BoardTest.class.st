@@ -44,10 +44,11 @@ BoardTest >> testWhenABoardIsCreatedAndTheBlackHoleFallsOutsideOfTheDimentionThe
 { #category : 'tests' }
 BoardTest >> testWhenABoardIsCreatedWithLessThanTwoSquaresThenInvalid [
 
-	| aDimention |
+	| aDimention aBlackHole |
 	aDimention := -1.
+	aBlackHole := BlackHole between: 1 and: 2.
 	self
-		should: [ Board with: aDimention ]
+		should: [ Board with: aDimention and: aBlackHole]
 		raise: Error
 		withMessageText: 'Board must have at least two squares'
 ]
@@ -59,10 +60,10 @@ BoardTest >> testWhenAPlayerMakesAMoveOfOneSquareThenItsPositionIsOne [
 	twentySquares := 20.
 	aBlackHole := BlackHole between: 2 and: 10.
 	aBoard := Board with: twentySquares and: aBlackHole.
-	aShip := Ship with: aBoard.
+	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 1.
 	aSetDice := SetDice toRoll: sideToRoll.
-	self assert: (aShip move: aSetDice roll) equals: 1
+	self assert: (aShip move: aSetDice roll on: aBoard ) equals: 1
 ]
 
 { #category : 'tests' }
@@ -72,10 +73,10 @@ BoardTest >> testWhenAPlayerMakesOneMoveOfTwoSquaresThenItsPositionIsTwo [
 	twentySquares := 20.
 	aBlackHole := BlackHole between: 3 and: 10.
 	aBoard := Board with: twentySquares and: aBlackHole.
-	aShip := Ship with: aBoard.
+	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 2.
 	aSetDice := SetDice toRoll: sideToRoll.
-	self assert: (aShip move: aSetDice roll) equals: 2
+	self assert: (aShip move: aSetDice roll on: aBoard ) equals: 2
 ]
 
 { #category : 'tests' }
@@ -85,21 +86,22 @@ BoardTest >> testWhenAPlayerMakesTwoMovesOfOneSquareThenItsPositionIsTwo [
 	twentySquares := 20.
 	aBlackHole := BlackHole between: 3 and: 10.
 	aBoard := Board with: twentySquares and: aBlackHole.
-	aShip := Ship with: aBoard.
+	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 1.
 	aSetDice := SetDice toRoll: sideToRoll.
-	aShip move: aSetDice roll.
-	self assert: (aShip move: aSetDice roll) equals: 2
+	aShip move: aSetDice roll on: aBoard .
+	self assert: (aShip move: aSetDice roll on: aBoard ) equals: 2
 ]
 
 { #category : 'tests' }
 BoardTest >> testWhenAPlayerReachesTheFinalSquare [
 
-	| aBoard aShip threeSquares aSetDice sideToRoll |
+	| aBoard aShip threeSquares aSetDice sideToRoll aBlackHole |
 	threeSquares := 3.
-	aBoard := Board with: threeSquares.
-	aShip := Ship with: aBoard.
+	aBlackHole := BlackHole between: 1 and: 2.
+	aBoard := Board with: threeSquares and: aBlackHole.
+	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 3.
 	aSetDice := SetDice toRoll: sideToRoll.
-	self assert: (aShip move: aSetDice roll) equals: 'You win the game'
+	self assert: (aShip move: aSetDice roll on: aBoard ) equals: 'You win the game'
 ]

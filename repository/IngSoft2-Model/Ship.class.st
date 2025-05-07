@@ -19,12 +19,6 @@ Ship class >> called: aName [
 	^ self new initializeCalled: aName
 ]
 
-{ #category : 'creation' }
-Ship class >> with: aBoard [
-
-	^ self new initializeWith: aBoard
-]
-
 { #category : 'accessing' }
 Ship >> details [
 
@@ -36,23 +30,6 @@ Ship >> initializeCalled: aName [
 
 	name := aName.
 	position := 0
-]
-
-{ #category : 'initialization' }
-Ship >> initializeWith: aBoard [
-
-	board := aBoard.
-
-	position := 0
-]
-
-{ #category : 'accessing' }
-Ship >> move: aPosition [
-
-	| aNewPosition |
-	aNewPosition := position + aPosition.
-	position := board validate: aNewPosition.
-	^ position
 ]
 
 { #category : 'accessing' }
