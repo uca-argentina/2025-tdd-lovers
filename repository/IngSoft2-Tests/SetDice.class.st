@@ -12,8 +12,9 @@ Class {
 }
 
 { #category : 'creation' }
-SetDice class >> toRoll: aSide [ 
-	^ self new initializeToRoll: aSide.
+SetDice class >> toRoll: aSide [
+
+	^ self new initializeToRoll: aSide
 ]
 
 { #category : 'initialization' }

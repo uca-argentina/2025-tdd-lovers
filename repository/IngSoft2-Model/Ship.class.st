@@ -22,7 +22,7 @@ Ship class >> called: aName [
 { #category : 'accessing' }
 Ship >> details [
 
-	^ name , ': ' , position asString 
+	^ name , ': ' , position asString
 ]
 
 { #category : 'initialization' }

@@ -44,7 +44,7 @@ Board class >> with: aDimention and: aBlackHole [
 Board >> initializeWith: aDimention and: aBlackHole [
 
 	dimention := aDimention.
-	blackHole := aBlackHole 
+	blackHole := aBlackHole
 ]
 
 { #category : 'testing' }

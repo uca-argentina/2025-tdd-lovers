@@ -16,19 +16,6 @@ GameTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMes
 ]
 
 { #category : 'tests' }
-GameTest >> testWhenAPlayerReachesTheFinalSquare [
-
-	| aBoard aShip threeSquares aSetDice sideToRoll aBlackHole |
-	threeSquares := 3.
-	aBlackHole := BlackHole between: 1 and: 2.
-	aBoard := Board with: threeSquares and: aBlackHole.
-	aShip := Ship called: 'BlueShip'.
-	sideToRoll := 3.
-	aSetDice := SetDice toRoll: sideToRoll.
-	self assert: (aShip move: aSetDice roll on: aBoard ) equals: 'You win the game'
-]
-
-{ #category : 'tests' }
 GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 
 	| aBoard someShips someDices fiveSquares aBlackHole aShip aSetDice aGame |
@@ -37,13 +24,52 @@ GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 	aBoard := Board with: fiveSquares and: aBlackHole.
 	aShip := Ship called: 'BlueShip'.
 	aSetDice := SetDice toRoll: 1.
-	someShips := #( ) asOrderedCollection. 
-	someDices := #( ) asOrderedCollection.
+	someShips := #(  ) asOrderedCollection.
+	someDices := #(  ) asOrderedCollection.
 	someShips add: aShip.
 	someDices add: aSetDice.
 	aGame := Game with: aBoard and: someShips and: someDices.
 	aGame nextTurn.
-	self assert: aGame printBoard equals:  'BlueShip: 1' , String cr
+	self assert: aGame printBoard equals: 'BlueShip: 1' , String cr
+]
+
+{ #category : 'tests' }
+GameTest >> testWhenAShipReachesTheFinalSquareThenTheGameEnds [
+
+	| aBoard someShips someDices fiveSquares aBlackHole aShip aSetDice aGame |
+	fiveSquares := 5.
+	aBlackHole := BlackHole between: 2 and: 3.
+	aBoard := Board with: fiveSquares and: aBlackHole.
+	aShip := Ship called: 'BlueShip'.
+	aSetDice := SetDice toRoll: 2.
+	someShips := #(  ) asOrderedCollection.
+	someDices := #(  ) asOrderedCollection.
+	someShips add: aShip.
+	someDices add: aSetDice.
+	aGame := Game with: aBoard and: someShips and: someDices.
+	aGame nextTurn.
+	self assert: aGame nextTurn equals: 'The game has ended.'
+]
+
+{ #category : 'tests' }
+GameTest >> testWhenTheGameEndsThenTheLeaderBoardShowsTheWinner [
+
+	| aBoard someShips someDices fiveSquares aBlackHole aShip aSetDice aGame |
+	fiveSquares := 5.
+	aBlackHole := BlackHole between: 2 and: 3.
+	aBoard := Board with: fiveSquares and: aBlackHole.
+	aShip := Ship called: 'BlueShip'.
+	aSetDice := SetDice toRoll: 2.
+	someShips := #(  ) asOrderedCollection.
+	someDices := #(  ) asOrderedCollection.
+	someShips add: aShip.
+	someDices add: aSetDice.
+	aGame := Game with: aBoard and: someShips and: someDices.
+	aGame nextTurn.
+	aGame nextTurn.
+	self
+		assert: aGame printBoard
+		equals: 'BlueShip: You win the game' , String cr
 ]
 
 { #category : 'tests' }
@@ -55,7 +81,7 @@ GameTest >> testWhenThereAreNotAnyDicesThenTheGameIsInvalid [
 	aBoard := Board with: fiveSquares and: aBlackHole.
 	aShip := Ship called: 'BlueShip'.
 	someShips := #( aShip ) asOrderedCollection.
-	someDices := #( ) asOrderedCollection.
+	someDices := #(  ) asOrderedCollection.
 	self
 		should: [ Game with: aBoard and: someShips and: someDices ]
 		raise: Error
@@ -65,12 +91,13 @@ GameTest >> testWhenThereAreNotAnyDicesThenTheGameIsInvalid [
 { #category : 'tests' }
 GameTest >> testWhenThereAreNotAnyShipsThenTheGameIsInvalid [
 
-	| aBoard someShips someDices fiveSquares aBlackHole aDice |
+	| aBoard someShips someDices fiveSquares aBlackHole aDice twoSides |
 	fiveSquares := 5.
 	aBlackHole := BlackHole between: 1 and: 2.
 	aBoard := Board with: fiveSquares and: aBlackHole.
 	someShips := #(  ) asOrderedCollection.
-	aDice := Dice with: 2.
+	twoSides := 2.
+	aDice := Dice with: twoSides.
 	someDices := #( aDice ) asOrderedCollection.
 	self
 		should: [ Game with: aBoard and: someShips and: someDices ]

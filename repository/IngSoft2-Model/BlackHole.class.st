@@ -13,16 +13,20 @@ Class {
 }
 
 { #category : 'validation' }
-BlackHole class >> beginning: aBeginning cannotBeLargerThan: anEnd [ 
-	aBeginning > anEnd ifTrue: [ Error signal: 'A Black Hole cannot be created with the beginning larger than the ending' ]
+BlackHole class >> beginning: aBeginning cannotBeLargerThan: anEnd [
+
+	aBeginning > anEnd ifTrue: [
+		Error signal:
+			'A Black Hole cannot be created with the beginning larger than the ending' ]
 ]
 
 { #category : 'creation' }
-BlackHole class >> between: aBeginning and: anEnd [ 
+BlackHole class >> between: aBeginning and: anEnd [
+
 	self cannotBeginInANegative: aBeginning.
 	self cannotEndInANegative: anEnd.
 	self beginning: aBeginning cannotBeLargerThan: anEnd.
-	^ self new initializeBetween: aBeginning and: anEnd.
+	^ self new initializeBetween: aBeginning and: anEnd
 ]
 
 { #category : 'validation' }

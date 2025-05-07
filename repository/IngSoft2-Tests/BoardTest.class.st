@@ -48,7 +48,7 @@ BoardTest >> testWhenABoardIsCreatedWithLessThanTwoSquaresThenInvalid [
 	aDimention := -1.
 	aBlackHole := BlackHole between: 1 and: 2.
 	self
-		should: [ Board with: aDimention and: aBlackHole]
+		should: [ Board with: aDimention and: aBlackHole ]
 		raise: Error
 		withMessageText: 'Board must have at least two squares'
 ]

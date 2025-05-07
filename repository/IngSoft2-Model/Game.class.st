@@ -32,26 +32,26 @@ Game class >> with: aBoard and: someShips and: someDices [
 
 	self hasDices: someDices.
 	self hasShips: someShips.
-	^ self new initializeWith: aBoard and: someShips and: someDices.
-	
+	^ self new initializeWith: aBoard and: someShips and: someDices
 ]
 
 { #category : 'initialization' }
 Game >> initializeWith: aBoard and: someShips and: someDices [
-	
+
 	board := aBoard.
 	ships := someShips.
-	dices := someDices.
+	dices := someDices
 ]
 
 { #category : 'action' }
 Game >> nextTurn [
 
-	| shipToMove rolledNumber |
+	| shipToMove rolledNumber aux |
 	shipToMove := ships removeFirst.
 	rolledNumber := self rollDices.
-	shipToMove move: rolledNumber on: board.
-	ships add: shipToMove
+	aux := shipToMove move: rolledNumber on: board.
+	ships add: shipToMove.
+	(aux = 'You win the game') ifTrue: [ ^ 'The game has ended.' ]
 ]
 
 { #category : 'printing' }
@@ -60,7 +60,8 @@ Game >> printBoard [
 	| positions |
 	positions := ships
 		             inject: ''
-		             into: [ :result :aShip | result , aShip details , String cr ].
+		             into: [ :result :aShip |
+		             result , aShip details , String cr ].
 	^ positions
 ]
 
