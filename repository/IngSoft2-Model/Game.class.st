@@ -1,3 +1,6 @@
+"
+""This class represents a Game""
+"
 Class {
 	#name : 'Game',
 	#superclass : 'Object',
@@ -31,4 +34,42 @@ Game class >> with: aBoard and: someShips and: someDices [
 	self hasShips: someShips.
 	^ self new initializeWith: aBoard and: someShips and: someDices.
 	
+]
+
+{ #category : 'initialization' }
+Game >> initializeWith: aBoard and: someShips and: someDices [
+	
+	board := aBoard.
+	ships := someShips.
+	dices := someDices.
+]
+
+{ #category : 'action' }
+Game >> nextTurn [
+
+	| shipToMove rolledNumber |
+	shipToMove := ships removeFirst.
+	rolledNumber := self rollDices.
+	shipToMove move: rolledNumber on: board.
+	ships add: shipToMove
+]
+
+{ #category : 'printing' }
+Game >> printBoard [
+
+	| positions |
+	positions := ships
+		             inject: ''
+		             into: [ :result :aShip | result , aShip details , String cr ].
+	^ positions
+]
+
+{ #category : 'action' }
+Game >> rollDices [
+
+	| rolledNumber |
+	rolledNumber := dices
+		                inject: 0
+		                into: [ :total :aDice | total + aDice roll ].
+	^ rolledNumber
 ]

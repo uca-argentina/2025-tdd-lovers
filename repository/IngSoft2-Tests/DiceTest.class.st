@@ -5,7 +5,7 @@ Class {
 	#package : 'IngSoft2-Tests'
 }
 
-{ #category : 'tests' }
+{ #category : 'asserting' }
 DiceTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMessage [
 
 	self
