@@ -71,7 +71,7 @@ GameTest >> testWhenAShipReachesTheFinalSquareThenTheGameEnds [
 	someDices add: aSetDice.
 	aGame := Game with: aBoard and: someShips and: someDices.
 	aGame nextTurn.
-	self assert: aGame nextTurn equals: 'The game has ended.'
+	self assert: aGame nextTurn equals: '(Winner) BlueShip'
 ]
 
 { #category : 'tests' }
@@ -92,7 +92,7 @@ GameTest >> testWhenTheGameEndsThenTheWinnerIsShownOnTheLeaderBoard [
 	aGame nextTurn.
 	self
 		assert: aGame printBoard
-		equals: 'BlueShip: You win the game' , String cr
+		equals: '(Winner) BlueShip: 5' , String cr
 ]
 
 { #category : 'tests' }

@@ -36,6 +36,12 @@ Game class >> with: aBoard and: someShips and: someDices [
 	^ self new initializeWith: aBoard and: someShips and: someDices
 ]
 
+{ #category : 'action' }
+Game >> canStillPlay [
+
+	finished ifTrue: [ Error signal: 'The game has finished.' ]
+]
+
 { #category : 'initialization' }
 Game >> finish [
 
@@ -55,13 +61,12 @@ Game >> initializeWith: aBoard and: someShips and: someDices [
 Game >> nextTurn [
 
 	| shipToMove rolledNumber shipNewPosition |
-	self theShipCanRoll.
+	self canStillPlay.
 	shipToMove := ships removeFirst.
 	rolledNumber := self rollDices.
 	shipNewPosition := shipToMove move: rolledNumber on: board in: self.
 	ships add: shipToMove.
-	shipNewPosition = 'You win the game' ifTrue: [
-		^ 'The game has ended.' ]
+	finished ifTrue: [^ shipToMove youWon ]
 ]
 
 { #category : 'printing' }
@@ -83,10 +88,4 @@ Game >> rollDices [
 		                inject: 0
 		                into: [ :total :aDice | total + aDice roll ].
 	^ rolledNumber
-]
-
-{ #category : 'action' }
-Game >> theShipCanRoll [
-
-	finished ifTrue: [ Error signal: 'The game has finished.' ]
 ]
