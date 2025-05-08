@@ -20,7 +20,7 @@ DiceTest >> testWhenADiceIsSetToRollASideThenItRollsThatSide [
 
 	| aSetDice sideToRoll |
 	sideToRoll := 3.
-	aSetDice := SetDice toRoll: sideToRoll.
+	aSetDice := LoadedDice toRoll: sideToRoll.
 	self assert: aSetDice roll equals: sideToRoll
 ]
 
