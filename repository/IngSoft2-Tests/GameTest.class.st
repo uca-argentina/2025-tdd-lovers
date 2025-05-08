@@ -16,6 +16,29 @@ GameTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMes
 ]
 
 { #category : 'tests' }
+GameTest >> testWhenAPlayerTryToRollTheDicesWhenTheGameHasFinished [
+
+	| aBoard someShips someDices fiveSquares aBlackHole aShip aSetDice aGame otherShip |
+	fiveSquares := 5.
+	aBlackHole := BlackHole between: 2 and: 3.
+	aBoard := Board with: fiveSquares and: aBlackHole.
+	aShip := Ship called: 'BlueShip'.
+	otherShip := Ship called: 'BlackShip'.
+	aSetDice := LoadedDice toRoll: 5.
+	someShips := #(  ) asOrderedCollection.
+	someDices := #(  ) asOrderedCollection.
+	someShips add: aShip.
+	someShips add: otherShip.
+	someDices add: aSetDice.
+	aGame := Game with: aBoard and: someShips and: someDices.
+	aGame nextTurn.
+	self
+		should: [ aGame nextTurn ]
+		raise: Error
+		withMessageText: 'The game has finished.'
+]
+
+{ #category : 'tests' }
 GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 
 	| aBoard someShips someDices fiveSquares aBlackHole aShip aSetDice aGame |

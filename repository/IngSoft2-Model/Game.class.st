@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'board',
 		'ships',
-		'dices'
+		'dices',
+		'finished'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -36,11 +37,18 @@ Game class >> with: aBoard and: someShips and: someDices [
 ]
 
 { #category : 'initialization' }
+Game >> finish [
+
+	finished := true
+]
+
+{ #category : 'initialization' }
 Game >> initializeWith: aBoard and: someShips and: someDices [
 
 	board := aBoard.
 	ships := someShips.
-	dices := someDices
+	dices := someDices.
+	finished := false
 ]
 
 { #category : 'action' }
@@ -49,7 +57,7 @@ Game >> nextTurn [
 	| shipToMove rolledNumber shipNewPosition |
 	shipToMove := ships removeFirst.
 	rolledNumber := self rollDices.
-	shipNewPosition := shipToMove move: rolledNumber on: board.
+	shipNewPosition := shipToMove move: rolledNumber on: board in: self.
 	ships add: shipToMove.
 	shipNewPosition = 'You win the game' ifTrue: [
 		^ 'The game has ended.' ]
@@ -70,8 +78,15 @@ Game >> printBoard [
 Game >> rollDices [
 
 	| rolledNumber |
+	self theShipCanRoll.
 	rolledNumber := dices
 		                inject: 0
 		                into: [ :total :aDice | total + aDice roll ].
 	^ rolledNumber
+]
+
+{ #category : 'action' }
+Game >> theShipCanRoll [
+
+	finished ifTrue: [ Error signal: 'The game has finished.' ]
 ]

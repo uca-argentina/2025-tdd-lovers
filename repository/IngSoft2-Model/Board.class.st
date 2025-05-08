@@ -40,6 +40,13 @@ Board class >> with: aDimention and: aBlackHole [
 	^ self new initializeWith: aDimention and: aBlackHole
 ]
 
+{ #category : 'testing' }
+Board >> hasReachTheFinalSquare: aPosition [
+
+	aPosition >= dimention ifTrue: [ ^ true ].
+	^ false
+]
+
 { #category : 'initialization' }
 Board >> initializeWith: aDimention and: aBlackHole [
 

@@ -39,3 +39,13 @@ Ship >> move: aPosition on: aBoard [
 	position := aBoard validate: aNewPosition.
 	^ position
 ]
+
+{ #category : 'accessing' }
+Ship >> move: aPosition on: aBoard in: aGame [
+
+	| aNewPosition |
+	aNewPosition := position + aPosition.
+	(aBoard hasReachTheFinalSquare: aNewPosition) ifTrue: [ aGame finish ].
+	position := aBoard validate: aNewPosition.
+	^ position
+]
