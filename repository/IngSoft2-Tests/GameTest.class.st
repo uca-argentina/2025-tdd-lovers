@@ -52,7 +52,7 @@ GameTest >> testWhenAShipReachesTheFinalSquareThenTheGameEnds [
 ]
 
 { #category : 'tests' }
-GameTest >> testWhenTheGameEndsThenTheTheWinnerIsShownOnTheLeaderBoard [
+GameTest >> testWhenTheGameEndsThenTheWinnerIsShownOnTheLeaderBoard [
 
 	| aBoard someShips someDices fiveSquares aBlackHole aShip aSetDice aGame |
 	fiveSquares := 5.
