@@ -32,13 +32,6 @@ Board class >> validate: aDimention isSmallerThanTheEndingOf: aBlackHole [
 ]
 
 { #category : 'creation' }
-Board class >> with: aDimention [
-
-	self numberOfDimentionIsValid: aDimention.
-	^ self new initializeWith: aDimention
-]
-
-{ #category : 'creation' }
 Board class >> with: aDimention and: aBlackHole [
 
 	self numberOfDimentionIsValid: aDimention.
@@ -47,17 +40,18 @@ Board class >> with: aDimention and: aBlackHole [
 	^ self new initializeWith: aDimention and: aBlackHole
 ]
 
-{ #category : 'initialization' }
-Board >> initializeWith: aDimention [
+{ #category : 'testing' }
+Board >> hasReachTheFinalSquare: aPosition [
 
-	dimention := aDimention
+	aPosition >= dimention ifTrue: [ ^ true ].
+	^ false
 ]
 
 { #category : 'initialization' }
 Board >> initializeWith: aDimention and: aBlackHole [
 
 	dimention := aDimention.
-	blackHole := aBlackHole 
+	blackHole := aBlackHole
 ]
 
 { #category : 'testing' }

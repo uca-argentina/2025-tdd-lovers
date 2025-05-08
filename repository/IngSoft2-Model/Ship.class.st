@@ -5,32 +5,47 @@ Class {
 	#name : 'Ship',
 	#superclass : 'Object',
 	#instVars : [
-		'board',
-		'position'
+		'position',
+		'name'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
 }
 
 { #category : 'creation' }
-Ship class >> with: aBoard [
+Ship class >> called: aName [
 
-	^ self new initializeWith: aBoard
+	^ self new initializeCalled: aName
+]
+
+{ #category : 'accessing' }
+Ship >> details [
+
+	^ name , ': ' , position asString
 ]
 
 { #category : 'initialization' }
-Ship >> initializeWith: aBoard [
+Ship >> initializeCalled: aName [
 
-	board := aBoard.
-
+	name := aName.
 	position := 0
 ]
 
 { #category : 'accessing' }
-Ship >> move: aPosition [
+Ship >> move: aPosition on: aBoard [
 
 	| aNewPosition |
 	aNewPosition := position + aPosition.
-	position := board validate: aNewPosition.
+	position := aBoard validate: aNewPosition.
+	^ position
+]
+
+{ #category : 'accessing' }
+Ship >> move: aPosition on: aBoard in: aGame [
+
+	| aNewPosition |
+	aNewPosition := position + aPosition.
+	(aBoard hasReachTheFinalSquare: aNewPosition) ifTrue: [ aGame finish ].
+	position := aBoard validate: aNewPosition.
 	^ position
 ]

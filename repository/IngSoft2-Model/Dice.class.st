@@ -13,35 +13,24 @@ Class {
 }
 
 { #category : 'validation' }
-Dice class >> numberOfSidesGreaterThanTwo: numberOfSides [ 
-	
-	numberOfSides < 2 ifTrue: [ Error signal: 'Dice must have at least two sides.' ]
+Dice class >> numberOfSidesGreaterThanTwo: numberOfSides [
+
+	numberOfSides < 2 ifTrue: [
+		Error signal: 'Dice must have at least two sides.' ]
 ]
 
 { #category : 'creation' }
-Dice class >> withSide: aSide [ 
-	^ self new initializeWithSide: aSide.
-]
+Dice class >> with: numberOfSides [
 
-{ #category : 'creation' }
-Dice class >> withSides: numberOfSides [
-	
 	self numberOfSidesGreaterThanTwo: numberOfSides.
-	^ self new initializeWithSides: numberOfSides.
+	^ self new initializeWith: numberOfSides
 ]
 
 { #category : 'initialization' }
-Dice >> initializeWithSide: aSide [ 
-	
-	numberOfSides := aSide.
-	initialSide := aSide.
-]
-
-{ #category : 'initialization' }
-Dice >> initializeWithSides: sides [
+Dice >> initializeWith: sides [
 
 	numberOfSides := sides.
-	initialSide := 1.
+	initialSide := 1
 ]
 
 { #category : 'functions' }
