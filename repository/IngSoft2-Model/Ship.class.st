@@ -31,7 +31,7 @@ Ship >> initializeCalled: aName [
 	position := 0
 ]
 
-{ #category : 'accessing' }
+{ #category : 'public - executing' }
 Ship >> move: aPosition on: aBoard [
 
 	| aNewPosition |
@@ -48,4 +48,10 @@ Ship >> move: aPosition on: aBoard in: aGame [
 	(aBoard hasReachTheFinalSquare: aNewPosition) ifTrue: [ aGame finish ].
 	position := aBoard validate: aNewPosition.
 	^ position
+]
+
+{ #category : 'update' }
+Ship >> youWon [
+
+	^ name := '(Winner) ' , name
 ]
