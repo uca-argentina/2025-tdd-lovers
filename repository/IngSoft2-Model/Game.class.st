@@ -55,6 +55,7 @@ Game >> initializeWith: aBoard and: someShips and: someDices [
 Game >> nextTurn [
 
 	| shipToMove rolledNumber shipNewPosition |
+	self theShipCanRoll.
 	shipToMove := ships removeFirst.
 	rolledNumber := self rollDices.
 	shipNewPosition := shipToMove move: rolledNumber on: board in: self.
@@ -78,7 +79,6 @@ Game >> printBoard [
 Game >> rollDices [
 
 	| rolledNumber |
-	self theShipCanRoll.
 	rolledNumber := dices
 		                inject: 0
 		                into: [ :total :aDice | total + aDice roll ].

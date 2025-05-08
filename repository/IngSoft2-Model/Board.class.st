@@ -57,6 +57,6 @@ Board >> initializeWith: aDimention and: aBlackHole [
 { #category : 'testing' }
 Board >> validate: aPosition [
 
-	aPosition >= dimention ifTrue: [ ^ 'You win the game' ].
+	(self hasReachTheFinalSquare:aPosition) ifTrue: [ ^ 'You win the game' ].
 	^ blackHole hasAnEndingAt: aPosition
 ]
