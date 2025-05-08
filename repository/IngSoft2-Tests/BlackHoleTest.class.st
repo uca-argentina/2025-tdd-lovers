@@ -52,7 +52,7 @@ BlackHoleTest >> testWhenAShipLandsOnTheBeginningOfABlackHoleThenItEndsUpAtTheEn
 	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 2.
-	aSetDice := LoadedDice toRoll: sideToRoll.
+	aSetDice := SetDice toRoll: sideToRoll.
 	self assert: (aShip move: aSetDice roll on: aBoard) equals: 10
 ]
 
@@ -65,6 +65,6 @@ BlackHoleTest >> testWhenAShipLandsOnTheEndOfABlackHoleThenItEndsUpAtTheBeginnin
 	aBoard := Board with: twentySquares and: aBlackHole.
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 5.
-	aSetDice := LoadedDice toRoll: sideToRoll.
+	aSetDice := SetDice toRoll: sideToRoll.
 	self assert: (aShip move: aSetDice roll on: aBoard) equals: 2
 ]
