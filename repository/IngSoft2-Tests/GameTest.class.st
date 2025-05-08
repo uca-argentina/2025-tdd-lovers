@@ -23,7 +23,7 @@ GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 	aBlackHole := BlackHole between: 2 and: 3.
 	aBoard := Board with: fiveSquares and: aBlackHole.
 	aShip := Ship called: 'BlueShip'.
-	aSetDice := SetDice toRoll: 1.
+	aSetDice := LoadedDice toRoll: 1.
 	someShips := #(  ) asOrderedCollection.
 	someDices := #(  ) asOrderedCollection.
 	someShips add: aShip.
@@ -41,7 +41,7 @@ GameTest >> testWhenAShipReachesTheFinalSquareThenTheGameEnds [
 	aBlackHole := BlackHole between: 2 and: 3.
 	aBoard := Board with: fiveSquares and: aBlackHole.
 	aShip := Ship called: 'BlueShip'.
-	aSetDice := SetDice toRoll: 2.
+	aSetDice := LoadedDice toRoll: 2.
 	someShips := #(  ) asOrderedCollection.
 	someDices := #(  ) asOrderedCollection.
 	someShips add: aShip.
@@ -59,7 +59,7 @@ GameTest >> testWhenTheGameEndsThenTheTheWinnerIsShownOnTheLeaderBoard [
 	aBlackHole := BlackHole between: 2 and: 3.
 	aBoard := Board with: fiveSquares and: aBlackHole.
 	aShip := Ship called: 'BlueShip'.
-	aSetDice := SetDice toRoll: 2.
+	aSetDice := LoadedDice toRoll: 2.
 	someShips := #(  ) asOrderedCollection.
 	someDices := #(  ) asOrderedCollection.
 	someShips add: aShip.
