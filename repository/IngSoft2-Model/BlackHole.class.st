@@ -44,6 +44,14 @@ BlackHole class >> cannotEndInANegative: anEnd [
 ]
 
 { #category : 'validation' }
+BlackHole >> endsAt: aDimention [
+
+	end == aDimention ifTrue: [
+		Error signal:
+			'A Black Hole cannot end at the end of its Board' ]
+]
+
+{ #category : 'validation' }
 BlackHole >> endsBefore: aDimention [
 
 	end > aDimention ifTrue: [

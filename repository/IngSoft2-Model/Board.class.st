@@ -26,6 +26,12 @@ Board class >> validate: aBlackHole fallsInto: aDimention [
 ]
 
 { #category : 'validation' }
+Board class >> validate: aDimention isNotEqualToTheEndOf: aBlackHole [
+
+	aBlackHole endsAt: aDimention
+]
+
+{ #category : 'validation' }
 Board class >> validate: aDimention isSmallerThanTheEndingOf: aBlackHole [
 
 	aBlackHole endsBefore: aDimention
@@ -37,6 +43,7 @@ Board class >> with: aDimention and: aBlackHole [
 	self numberOfDimentionIsValid: aDimention.
 	self validate: aBlackHole fallsInto: aDimention.
 	self validate: aDimention isSmallerThanTheEndingOf: aBlackHole.
+	self validate: aDimention isNotEqualToTheEndOf: aBlackHole.
 	^ self new initializeWith: aDimention and: aBlackHole
 ]
 

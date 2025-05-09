@@ -29,6 +29,19 @@ BoardTest >> testWhenABoardIsCreatedAndEndsBeforeTheEndingOfItsBlackHoleThenInva
 ]
 
 { #category : 'tests' }
+BoardTest >> testWhenABoardIsCreatedAndItsBlackHoleEndsAtTheLastSquareThenInvalid [
+
+	| twentySquares aBlackHole |
+	twentySquares := 20.
+	aBlackHole := BlackHole between: 15 and: 20.
+	self
+		should: [ Board with: twentySquares and: aBlackHole ]
+		raise: Error
+		withMessageText:
+		'A Black Hole cannot end at the end of its Board'
+]
+
+{ #category : 'tests' }
 BoardTest >> testWhenABoardIsCreatedAndTheBlackHoleFallsOutsideOfTheDimentionThenInvalid [
 
 	| twentySquares aBlackHole |
