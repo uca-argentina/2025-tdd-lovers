@@ -47,7 +47,7 @@ Board class >> with: aDimention and: aBlackHole [
 	^ self new initializeWith: aDimention and: aBlackHole
 ]
 
-{ #category : 'testing' }
+{ #category : 'validation' }
 Board >> hasReachTheFinalSquare: aPosition [
 
 	aPosition >= dimention ifTrue: [ ^ true ].
@@ -61,7 +61,7 @@ Board >> initializeWith: aDimention and: aBlackHole [
 	blackHole := aBlackHole
 ]
 
-{ #category : 'testing' }
+{ #category : 'validation' }
 Board >> validate: aPosition [
 
 	(self hasReachTheFinalSquare: aPosition) ifTrue: [ ^ dimention ].

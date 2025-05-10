@@ -14,18 +14,18 @@ Class {
 	#package : 'IngSoft2-Model'
 }
 
-{ #category : 'testing' }
+{ #category : 'validation' }
 Game class >> hasDices: someDices [
 
 	someDices size < 1 ifTrue: [
 		Error signal: 'The Game needs at least one dice to start.' ]
 ]
 
-{ #category : 'testing' }
+{ #category : 'validation' }
 Game class >> hasShips: someShips [
 
-	someShips size < 1 ifTrue: [
-		Error signal: 'The Game needs at least one ship to start.' ]
+	someShips size < 2 ifTrue: [
+		Error signal: 'The Game needs at least two ship to start.' ]
 ]
 
 { #category : 'creation' }
@@ -36,13 +36,13 @@ Game class >> with: aBoard and: someShips and: someDices [
 	^ self new initializeWith: aBoard and: someShips and: someDices
 ]
 
-{ #category : 'action' }
+{ #category : 'validation' }
 Game >> canStillPlay [
 
 	finished ifTrue: [ Error signal: 'The game has finished.' ]
 ]
 
-{ #category : 'initialization' }
+{ #category : 'changing state' }
 Game >> finish [
 
 	finished := true

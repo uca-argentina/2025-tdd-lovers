@@ -31,7 +31,7 @@ Ship >> initializeCalled: aName [
 	position := 0
 ]
 
-{ #category : 'public - executing' }
+{ #category : 'update' }
 Ship >> move: aPosition on: aBoard [
 
 	| aNewPosition |
@@ -40,7 +40,7 @@ Ship >> move: aPosition on: aBoard [
 	^ position
 ]
 
-{ #category : 'accessing' }
+{ #category : 'update' }
 Ship >> move: aPosition on: aBoard in: aGame [
 
 	| aNewPosition |
