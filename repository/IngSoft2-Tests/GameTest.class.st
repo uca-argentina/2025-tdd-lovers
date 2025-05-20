@@ -18,15 +18,15 @@ GameTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMes
 { #category : 'tests' }
 GameTest >> testWhenAPlayerTryToRollTheDicesWhenTheGameHasFinishedThenItFails [
 
-	| fiveSquares aBlackHole aGame aGameBuilder sideToRoll |
+	| fiveSquares aWormHole aGame aGameBuilder sideToRoll |
 	fiveSquares := 5.
 	sideToRoll := 5.
-	aBlackHole := BlackHole between: 2 and: 3.
+	aWormHole := WormHole between: 2 and: 3.
 	aGameBuilder := GameBuilder new.
 	aGameBuilder ship: 'BlueShip'.
 	aGameBuilder ship: 'BlackShip'.
 	aGameBuilder loadedDice: sideToRoll.
-	aGameBuilder board: fiveSquares with: aBlackHole. 
+	aGameBuilder board: fiveSquares with: aWormHole. 
 	aGame := aGameBuilder build.
 	aGame nextTurn.
 	self
@@ -38,15 +38,15 @@ GameTest >> testWhenAPlayerTryToRollTheDicesWhenTheGameHasFinishedThenItFails [
 { #category : 'tests' }
 GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 
-	| fiveSquares aBlackHole aGame expectedDetails sideToRoll aGameBuilder |
+	| fiveSquares aWormHole aGame expectedDetails sideToRoll aGameBuilder |
 	fiveSquares := 5.
 	sideToRoll := 1.
-	aBlackHole := BlackHole between: 2 and: 3.
+	aWormHole := WormHole between: 2 and: 3.
 	aGameBuilder := GameBuilder new.
 	aGameBuilder ship: 'BlueShip'.
 	aGameBuilder ship: 'BlackShip'.
 	aGameBuilder loadedDice: sideToRoll.
-	aGameBuilder board: fiveSquares with: aBlackHole. 
+	aGameBuilder board: fiveSquares with: aWormHole. 
 	aGame := aGameBuilder build.
 	expectedDetails := 'BlackShip: 0' , String cr , 'BlueShip: 1' , String cr.
 	aGame nextTurn.
@@ -56,15 +56,15 @@ GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 { #category : 'tests' }
 GameTest >> testWhenAShipReachesTheFinalSquareThenTheGameEnds [
 
-	| fiveSquares aBlackHole aGame aGameBuilder sideToRoll |
+	| fiveSquares aWormHole aGame aGameBuilder sideToRoll |
 	fiveSquares := 5.
 	sideToRoll := 2.
-	aBlackHole := BlackHole between: 2 and: 3.
+	aWormHole := WormHole between: 2 and: 3.
 	aGameBuilder := GameBuilder new.
 	aGameBuilder ship: 'BlueShip'.
 	aGameBuilder ship: 'BlackShip'.
 	aGameBuilder loadedDice: sideToRoll.
-	aGameBuilder board: fiveSquares with: aBlackHole. 
+	aGameBuilder board: fiveSquares with: aWormHole. 
 	aGame := aGameBuilder build.
 	aGame nextTurn.
 	aGame nextTurn.
@@ -74,15 +74,15 @@ GameTest >> testWhenAShipReachesTheFinalSquareThenTheGameEnds [
 { #category : 'tests' }
 GameTest >> testWhenTheGameEndsThenTheWinnerIsShownOnTheLeaderBoard [
 
-	| fiveSquares aBlackHole aGame expectedDetails aGameBuilder sideToRoll |
+	| fiveSquares aWormHole aGame expectedDetails aGameBuilder sideToRoll |
 	fiveSquares := 5.
 	sideToRoll := 2.
-	aBlackHole := BlackHole between: 2 and: 3.
+	aWormHole := WormHole between: 2 and: 3.
 	aGameBuilder := GameBuilder new.
 	aGameBuilder ship: 'BlueShip'.
 	aGameBuilder ship: 'BlackShip'.
 	aGameBuilder loadedDice: sideToRoll.
-	aGameBuilder board: fiveSquares with: aBlackHole. 
+	aGameBuilder board: fiveSquares with: aWormHole. 
 	aGame := aGameBuilder build.
 	expectedDetails := 'BlackShip: 3' , String cr ,'(Winner) BlueShip: 5' , String cr.
 	aGame nextTurn.
@@ -96,13 +96,13 @@ GameTest >> testWhenTheGameEndsThenTheWinnerIsShownOnTheLeaderBoard [
 { #category : 'tests' }
 GameTest >> testWhenThereAreLessThanTwoShipsThenTheGameIsInvalid [
 
-	| fiveSquares aBlackHole twoSides aGameBuilder |
+	| fiveSquares aWormHole twoSides aGameBuilder |
 	fiveSquares := 5.
 	twoSides := 2.
-	aBlackHole := BlackHole between: 1 and: 2.
+	aWormHole := WormHole between: 1 and: 2.
 	aGameBuilder := GameBuilder new.
 	aGameBuilder ship: 'BlueShip'.
-	aGameBuilder board: fiveSquares with: aBlackHole.
+	aGameBuilder board: fiveSquares with: aWormHole.
 	aGameBuilder dice: twoSides.
 	self
 		should: [ aGameBuilder build ]
@@ -113,13 +113,13 @@ GameTest >> testWhenThereAreLessThanTwoShipsThenTheGameIsInvalid [
 { #category : 'tests' }
 GameTest >> testWhenThereAreNotAnyDicesThenTheGameIsInvalid [
 
-	| fiveSquares aBlackHole aGameBuilder |
+	| fiveSquares aWormHole aGameBuilder |
 	fiveSquares := 5.
-	aBlackHole := BlackHole between: 1 and: 2.
+	aWormHole := WormHole between: 1 and: 2.
 	aGameBuilder := GameBuilder new.
 	aGameBuilder ship: 'Blueship'.
 	aGameBuilder ship: 'Blackship'.
-	aGameBuilder board: fiveSquares with: aBlackHole .
+	aGameBuilder board: fiveSquares with: aWormHole .
 	self
 		should: [ aGameBuilder build. ]
 		raise: Error

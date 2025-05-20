@@ -14,9 +14,9 @@ Class {
 }
 
 { #category : 'building' }
-GameBuilder >> board: aDimention with: aBlackHole [ 
+GameBuilder >> board: aLength with: aWormHole [ 
 		
-	board := Board with: aDimention and: aBlackHole. 
+	board := Board with: aLength and: aWormHole. 
 ]
 
 { #category : 'building' }

@@ -8,10 +8,10 @@ Class {
 { #category : 'tests' }
 ShipTest >> testWhenAShipMakesOneMoveOfTwoSquaresThenItsPositionIsTwo [
 
-	| aBoard aShip twentySquares aSetDice aBlackHole sideToRoll |
+	| aBoard aShip twentySquares aSetDice aWormHole sideToRoll |
 	twentySquares := 20.
-	aBlackHole := BlackHole between: 3 and: 10.
-	aBoard := Board with: twentySquares and: aBlackHole.
+	aWormHole := WormHole between: 3 and: 10.
+	aBoard := Board with: twentySquares and: aWormHole.
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 2.
 	aSetDice := LoadedDice toRoll: sideToRoll.
@@ -21,10 +21,10 @@ ShipTest >> testWhenAShipMakesOneMoveOfTwoSquaresThenItsPositionIsTwo [
 { #category : 'tests' }
 ShipTest >> testWhenAShipMakesTwoMovesOfOneSquareThenItsPositionIsTwo [
 
-	| aBoard aShip twentySquares aSetDice aBlackHole sideToRoll |
+	| aBoard aShip twentySquares aSetDice aWormHole sideToRoll |
 	twentySquares := 20.
-	aBlackHole := BlackHole between: 3 and: 10.
-	aBoard := Board with: twentySquares and: aBlackHole.
+	aWormHole := WormHole between: 3 and: 10.
+	aBoard := Board with: twentySquares and: aWormHole.
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 1.
 	aSetDice := LoadedDice toRoll: sideToRoll.
@@ -35,10 +35,10 @@ ShipTest >> testWhenAShipMakesTwoMovesOfOneSquareThenItsPositionIsTwo [
 { #category : 'tests' }
 ShipTest >> testWhenAShipMovesOneSquareThenItsPositionIsOne [
 
-	| aBoard aShip twentySquares aSetDice aBlackHole sideToRoll |
+	| aBoard aShip twentySquares aSetDice aWormHole sideToRoll |
 	twentySquares := 20.
-	aBlackHole := BlackHole between: 2 and: 10.
-	aBoard := Board with: twentySquares and: aBlackHole.
+	aWormHole := WormHole between: 2 and: 10.
+	aBoard := Board with: twentySquares and: aWormHole.
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 1.
 	aSetDice := LoadedDice toRoll: sideToRoll.

@@ -2,7 +2,7 @@
 This is the representation of a black hole.
 "
 Class {
-	#name : 'BlackHole',
+	#name : 'WormHole',
 	#superclass : 'Object',
 	#instVars : [
 		'beginning',
@@ -13,15 +13,15 @@ Class {
 }
 
 { #category : 'validation' }
-BlackHole class >> beginning: aBeginning cannotBeLargerThan: anEnd [
+WormHole class >> beginning: aBeginning cannotBeLargerThan: anEnd [
 
 	aBeginning > anEnd ifTrue: [
 		Error signal:
-			'A Black Hole cannot be created with the beginning larger than the ending' ]
+			'A Worm Hole cannot be created with the beginning larger than the ending' ]
 ]
 
 { #category : 'creation' }
-BlackHole class >> between: aBeginning and: anEnd [
+WormHole class >> between: aBeginning and: anEnd [
 
 	self cannotBeginInANegative: aBeginning.
 	self cannotEndInANegative: anEnd.
@@ -30,45 +30,45 @@ BlackHole class >> between: aBeginning and: anEnd [
 ]
 
 { #category : 'validation' }
-BlackHole class >> cannotBeginInANegative: anEnd [
+WormHole class >> cannotBeginInANegative: anEnd [
 
 	anEnd <= 0 ifTrue: [
-		Error signal: 'A Black Hole cannot begin in a negative square' ]
+		Error signal: 'A Worm Hole cannot begin in a negative square' ]
 ]
 
 { #category : 'validation' }
-BlackHole class >> cannotEndInANegative: anEnd [
+WormHole class >> cannotEndInANegative: anEnd [
 
 	anEnd <= 0 ifTrue: [
-		Error signal: 'A Black Hole cannot end in a negative square' ]
+		Error signal: 'A Worm Hole cannot end in a negative square' ]
 ]
 
 { #category : 'validation' }
-BlackHole >> endsAt: aDimention [
+WormHole >> endsAt: aLength [
 
-	end == aDimention ifTrue: [
+	end == aLength ifTrue: [
 		Error signal:
-			'A Black Hole cannot end at the end of its Board' ]
+			'A Worm Hole cannot end at the end of its Board' ]
 ]
 
 { #category : 'validation' }
-BlackHole >> endsBefore: aDimention [
+WormHole >> endsBefore: aLength [
 
-	end > aDimention ifTrue: [
+	end > aLength ifTrue: [
 		Error signal:
-			'A Board cannot end before the ending of its Black Hole' ]
+			'A Board cannot end before the ending of its Worm Hole' ]
 ]
 
 { #category : 'validation' }
-BlackHole >> fallsInto: aDimention [
+WormHole >> fallsInto: aLength [
 
-	aDimention < beginning ifTrue: [
+	aLength < beginning ifTrue: [
 		Error signal:
-			'A Black Hole cannot fall outside of its Boards dimention' ]
+			'A Worm Hole cannot fall outside of its Boards length' ]
 ]
 
 { #category : 'comparing' }
-BlackHole >> hasAnEndingAt: aPosition [
+WormHole >> hasAnEndingAt: aPosition [
 
 	aPosition == beginning ifTrue: [ ^ end ].
 	aPosition == end ifTrue: [ ^ beginning ].
@@ -77,7 +77,7 @@ BlackHole >> hasAnEndingAt: aPosition [
 ]
 
 { #category : 'initialization' }
-BlackHole >> initializeBetween: aBeginning and: anEnd [
+WormHole >> initializeBetween: aBeginning and: anEnd [
 
 	beginning := aBeginning.
 	end := anEnd
