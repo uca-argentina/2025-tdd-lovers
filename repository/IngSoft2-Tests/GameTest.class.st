@@ -181,6 +181,41 @@ GameTest >> testWhenTheGameEndsThenTheWinnerIsShownOnTheLeaderBoard [
 ]
 
 { #category : 'tests' }
+GameTest >> testWhenTheGameWithMultipleLapsEndsThenTheWinnerIsShownOnTheLeaderBoard [
+
+	| fiveSquares aWormHole aGame expectedDetails sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices fourLaps |
+	fiveSquares := 5.
+	sideToRoll := 10.
+	fourLaps := 4.
+
+	aWormHole := WormHole between: 2 and: 3.
+	aBlueShip := Ship called: 'BlueShip'.
+	aBlackShip := Ship called: 'BlackShip'.
+	aLoadedDice := LoadedDice toRoll: sideToRoll.
+	aBoard := Board with: fiveSquares and: aWormHole.
+
+	someShips := OrderedCollection new.
+	someDices := OrderedCollection new.
+	someShips add: aBlueShip.
+	someShips add: aBlackShip.
+	someDices add: aLoadedDice.
+	aGame := Game
+		         with: aBoard
+		         for: fourLaps
+		         and: someShips
+		         and: someDices.
+
+	expectedDetails := 'Winner: BlueShip' , String cr , 'BlackShip: Lap: 3 Square: 0'
+	                   , String cr , 'BlueShip: Lap: 5 Square: 0' , String cr.
+
+	aGame nextTurn.
+	aGame nextTurn.
+	aGame nextTurn.
+
+	self assert: aGame printBoard equals: expectedDetails
+]
+
+{ #category : 'tests' }
 GameTest >> testWhenThereAreLessThanTwoShipsThenTheGameIsInvalid [
 
 	| fiveSquares aWormHole aBlueShip aLoadedDice sideToRoll aBoard someShips someDices oneLap |
