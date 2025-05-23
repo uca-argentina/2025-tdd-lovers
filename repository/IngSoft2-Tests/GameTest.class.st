@@ -130,16 +130,22 @@ GameTest >> testWhenTheGameEndsThenTheWinnerIsShownOnTheLeaderBoard [
 { #category : 'tests' }
 GameTest >> testWhenThereAreLessThanTwoShipsThenTheGameIsInvalid [
 
-	| fiveSquares aWormHole twoSides aGameBuilder |
+	| fiveSquares aWormHole aBlueShip aLoadedDice sideToRoll aBoard someShips someDices |
 	fiveSquares := 5.
-	twoSides := 2.
+	sideToRoll := 2.
+	
 	aWormHole := WormHole between: 1 and: 2.
-	aGameBuilder := GameBuilder new.
-	aGameBuilder ship: 'BlueShip'.
-	aGameBuilder board: fiveSquares with: aWormHole.
-	aGameBuilder dice: twoSides.
+	
+	aBlueShip := Ship called: 'BlueShip'.
+	aLoadedDice := LoadedDice toRoll: sideToRoll.
+	aBoard := Board with: fiveSquares and: aWormHole.
+	
+	someShips := OrderedCollection new.
+	someDices := OrderedCollection new.
+	someShips add: aBlueShip.
+	someDices add: aLoadedDice.
 	self
-		should: [ aGameBuilder build ]
+		should: [ Game with: aBoard and: someShips and: someDices. ]
 		raise: Error
 		withMessageText: 'The Game needs at least two ship to start.'
 ]
