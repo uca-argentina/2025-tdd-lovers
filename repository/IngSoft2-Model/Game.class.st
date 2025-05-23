@@ -9,7 +9,8 @@ Class {
 		'ships',
 		'dices',
 		'finished',
-		'winner'
+		'winner',
+		'laps'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -23,6 +24,13 @@ Game class >> hasDices: someDices [
 ]
 
 { #category : 'validation' }
+Game class >> hasLaps: someLaps [
+
+	someLaps < 1 ifTrue: [
+		Error signal: 'The Game needs at least one lap to start.' ]
+]
+
+{ #category : 'validation' }
 Game class >> hasShips: someShips [
 
 	someShips size < 2 ifTrue: [
@@ -30,11 +38,12 @@ Game class >> hasShips: someShips [
 ]
 
 { #category : 'creation' }
-Game class >> with: aBoard and: someShips and: someDices [
+Game class >> with: aBoard for: someLaps and: someShips and: someDices [
 
 	self hasDices: someDices.
 	self hasShips: someShips.
-	^ self new initializeWith: aBoard and: someShips and: someDices
+	self hasLaps: someLaps.
+	^ self new initializeWith: aBoard for: someLaps and: someShips and: someDices
 ]
 
 { #category : 'validation' }
@@ -56,11 +65,12 @@ Game >> hasFinished [
 ]
 
 { #category : 'initialization' }
-Game >> initializeWith: aBoard and: someShips and: someDices [
+Game >> initializeWith: aBoard for: someLaps and: someShips and: someDices [
 
 	board := aBoard.
 	ships := someShips.
 	dices := someDices.
+	laps := someLaps.
 	finished := false.
 	winner := NullShip new.
 ]

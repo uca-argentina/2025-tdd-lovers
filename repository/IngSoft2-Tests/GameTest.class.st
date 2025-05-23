@@ -18,23 +18,28 @@ GameTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMes
 { #category : 'tests' }
 GameTest >> testWhenAPlayerTryToRollTheDicesWhenTheGameHasFinishedThenItFails [
 
-	| fiveSquares aWormHole aGame sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices |
+	| fiveSquares aWormHole aGame sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices oneLap |
 	fiveSquares := 5.
 	sideToRoll := 5.
-	
+	oneLap := 1.
+
 	aWormHole := WormHole between: 2 and: 3.
 	aBlueShip := Ship called: 'BlueShip'.
 	aBlackShip := Ship called: 'BlackShip'.
 	aLoadedDice := LoadedDice toRoll: sideToRoll.
 	aBoard := Board with: fiveSquares and: aWormHole.
-	
+
 	someShips := OrderedCollection new.
 	someDices := OrderedCollection new.
 	someShips add: aBlueShip.
 	someShips add: aBlackShip.
 	someDices add: aLoadedDice.
-	aGame := Game with: aBoard and: someShips and: someDices.
-	
+	aGame := Game
+		         with: aBoard
+		         for: oneLap
+		         and: someShips
+		         and: someDices.
+
 	aGame nextTurn.
 	self
 		should: [ aGame nextTurn ]
@@ -45,107 +50,129 @@ GameTest >> testWhenAPlayerTryToRollTheDicesWhenTheGameHasFinishedThenItFails [
 { #category : 'tests' }
 GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 
-	| fiveSquares aWormHole aGame expectedDetails sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices |
+	| fiveSquares aWormHole aGame expectedDetails sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices oneLap |
 	fiveSquares := 5.
 	sideToRoll := 1.
-	
+	oneLap := 1.
+
 	aWormHole := WormHole between: 2 and: 3.
 	aBlueShip := Ship called: 'BlueShip'.
 	aBlackShip := Ship called: 'BlackShip'.
 	aLoadedDice := LoadedDice toRoll: sideToRoll.
 	aBoard := Board with: fiveSquares and: aWormHole.
-	
+
 	someShips := OrderedCollection new.
 	someDices := OrderedCollection new.
 	someShips add: aBlueShip.
 	someShips add: aBlackShip.
 	someDices add: aLoadedDice.
-	aGame := Game with: aBoard and: someShips and: someDices.
-	
-	expectedDetails := 'Winner: There is not a winner yet', String cr , 'BlackShip: 0' , String cr , 'BlueShip: 1' , String cr.
-	
+	aGame := Game
+		         with: aBoard
+		         for: oneLap
+		         and: someShips
+		         and: someDices.
+
+	expectedDetails := 'Winner: There is not a winner yet' , String cr
+	                   , 'BlackShip: 0' , String cr , 'BlueShip: 1'
+	                   , String cr.
+
 	aGame nextTurn.
-	
+
 	self assert: aGame printBoard equals: expectedDetails
 ]
 
 { #category : 'tests' }
 GameTest >> testWhenAShipReachesTheFinalSquareThenTheGameEnds [
 
-	| fiveSquares aWormHole aGame sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices |
+	| fiveSquares aWormHole aGame sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices oneLap |
 	fiveSquares := 5.
 	sideToRoll := 2.
-	
+	oneLap := 1.
+
 	aWormHole := WormHole between: 2 and: 3.
 	aBlueShip := Ship called: 'BlueShip'.
 	aBlackShip := Ship called: 'BlackShip'.
 	aLoadedDice := LoadedDice toRoll: sideToRoll.
 	aBoard := Board with: fiveSquares and: aWormHole.
-	
+
 	someShips := OrderedCollection new.
 	someDices := OrderedCollection new.
 	someShips add: aBlueShip.
 	someShips add: aBlackShip.
 	someDices add: aLoadedDice.
-	aGame := Game with: aBoard and: someShips and: someDices.
-	
+	aGame := Game
+		         with: aBoard
+		         for: oneLap
+		         and: someShips
+		         and: someDices.
+
 	aGame nextTurn.
 	aGame nextTurn.
 	aGame nextTurn.
-	
-	self assert: (aGame hasFinished)
+
+	self assert: aGame hasFinished
 ]
 
 { #category : 'tests' }
 GameTest >> testWhenTheGameEndsThenTheWinnerIsShownOnTheLeaderBoard [
 
-	| fiveSquares aWormHole aGame expectedDetails sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices |
+	| fiveSquares aWormHole aGame expectedDetails sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices oneLap |
 	fiveSquares := 5.
 	sideToRoll := 2.
-	
+	oneLap := 1.
+
 	aWormHole := WormHole between: 2 and: 3.
 	aBlueShip := Ship called: 'BlueShip'.
 	aBlackShip := Ship called: 'BlackShip'.
 	aLoadedDice := LoadedDice toRoll: sideToRoll.
 	aBoard := Board with: fiveSquares and: aWormHole.
-	
+
 	someShips := OrderedCollection new.
 	someDices := OrderedCollection new.
 	someShips add: aBlueShip.
 	someShips add: aBlackShip.
 	someDices add: aLoadedDice.
-	aGame := Game with: aBoard and: someShips and: someDices.
-	
-	expectedDetails := 'Winner: BlueShip' , String cr , 'BlackShip: 3' , String cr ,'BlueShip: 5' , String cr.
-	
+	aGame := Game
+		         with: aBoard
+		         for: oneLap
+		         and: someShips
+		         and: someDices.
+
+	expectedDetails := 'Winner: BlueShip' , String cr , 'BlackShip: 3'
+	                   , String cr , 'BlueShip: 5' , String cr.
+
 	aGame nextTurn.
 	aGame nextTurn.
 	aGame nextTurn.
-	
-	self
-		assert: aGame printBoard
-		equals: expectedDetails
+
+	self assert: aGame printBoard equals: expectedDetails
 ]
 
 { #category : 'tests' }
 GameTest >> testWhenThereAreLessThanTwoShipsThenTheGameIsInvalid [
 
-	| fiveSquares aWormHole aBlueShip aLoadedDice sideToRoll aBoard someShips someDices |
+	| fiveSquares aWormHole aBlueShip aLoadedDice sideToRoll aBoard someShips someDices oneLap |
 	fiveSquares := 5.
 	sideToRoll := 2.
-	
+	oneLap := 1.
+
 	aWormHole := WormHole between: 1 and: 2.
-	
+
 	aBlueShip := Ship called: 'BlueShip'.
 	aLoadedDice := LoadedDice toRoll: sideToRoll.
 	aBoard := Board with: fiveSquares and: aWormHole.
-	
+
 	someShips := OrderedCollection new.
 	someDices := OrderedCollection new.
 	someShips add: aBlueShip.
 	someDices add: aLoadedDice.
 	self
-		should: [ Game with: aBoard and: someShips and: someDices. ]
+		should: [
+			Game
+				with: aBoard
+				for: oneLap
+				and: someShips
+				and: someDices ]
 		raise: Error
 		withMessageText: 'The Game needs at least two ship to start.'
 ]
@@ -153,19 +180,56 @@ GameTest >> testWhenThereAreLessThanTwoShipsThenTheGameIsInvalid [
 { #category : 'tests' }
 GameTest >> testWhenThereAreNotAnyDicesThenTheGameIsInvalid [
 
-	| fiveSquares aWormHole aBlueShip aBoard someShips someDices |
+	| fiveSquares aWormHole aBlueShip aBoard someShips someDices oneLap |
 	fiveSquares := 5.
+	oneLap := 1.
 	aWormHole := WormHole between: 1 and: 2.
-	
+
 	aBlueShip := Ship called: 'BlueShip'.
 	aBoard := Board with: fiveSquares and: aWormHole.
-	
+
 	someShips := OrderedCollection new.
 	someDices := OrderedCollection new.
 	someShips add: aBlueShip.
-	
+
 	self
-		should: [ Game with: aBoard and: someShips and: someDices. ]
+		should: [
+			Game
+				with: aBoard
+				for: oneLap
+				and: someShips
+				and: someDices ]
 		raise: Error
 		withMessageText: 'The Game needs at least one dice to start.'
+]
+
+{ #category : 'tests' }
+GameTest >> testWhenThereIsLessThanOneLapThenTheGameIsInvalid [
+
+	| fiveSquares aWormHole aBlueShip aBoard someShips someDices aDice twoSides zeroLaps aBlackShip |
+	fiveSquares := 5.
+	twoSides := 2.
+	zeroLaps := 0.
+	aWormHole := WormHole between: 1 and: 2.
+
+	aBlueShip := Ship called: 'BlueShip'.
+	aBlackShip := Ship called: 'BlackShip'.
+	aDice := Dice with: twoSides.
+	aBoard := Board with: fiveSquares and: aWormHole.
+
+	someShips := OrderedCollection new.
+	someDices := OrderedCollection new.
+	someShips add: aBlueShip.
+	someShips add: aBlackShip.
+	someDices add: aDice.
+
+	self
+		should: [
+			Game
+				with: aBoard
+				for: zeroLaps
+				and: someShips
+				and: someDices ]
+		raise: Error
+		withMessageText: 'The Game needs at least one lap to start.'
 ]
