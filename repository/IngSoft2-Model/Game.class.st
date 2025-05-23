@@ -8,7 +8,8 @@ Class {
 		'board',
 		'ships',
 		'dices',
-		'finished'
+		'finished',
+		'winner'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -48,44 +49,57 @@ Game >> finish [
 	finished := true
 ]
 
+{ #category : 'testing' }
+Game >> hasFinished [
+
+	^ finished
+]
+
 { #category : 'initialization' }
 Game >> initializeWith: aBoard and: someShips and: someDices [
 
 	board := aBoard.
 	ships := someShips.
 	dices := someDices.
-	finished := false
+	finished := false.
+	winner := NullShip new.
 ]
 
 { #category : 'action' }
 Game >> nextTurn [
 
-	| shipToMove rolledNumber shipNewPosition |
+	| shipToMove rolledNumber shipNewPosition shipInitialPosition shipFinalPosition |
 	self canStillPlay.
 	shipToMove := ships removeFirst.
 	rolledNumber := self rollDices.
-	shipNewPosition := shipToMove move: rolledNumber on: board in: self.
+	shipInitialPosition := shipToMove actualPosition.
+	shipFinalPosition := shipInitialPosition + rolledNumber.
+	(board hasReachTheFinalSquare: shipFinalPosition) ifTrue: [ self finish ].
+	shipNewPosition := board moveIfWormHoleAt: shipFinalPosition.
+	shipToMove moveTo: shipNewPosition.
 	ships add: shipToMove.
-	finished ifTrue: [^ shipToMove youWon ]
+	finished ifTrue: [ winner := shipToMove ]
 ]
 
 { #category : 'printing' }
 Game >> printBoard [
 
-	| positions |
+	| positions results winnerShip |
+	
+	winnerShip := 'Winner: ', winner name , String cr.
 	positions := ships
 		             inject: ''
 		             into: [ :result :aShip |
 		             result , aShip details , String cr ].
-	^ positions
+	results:= winnerShip , positions.
+	^ results
 ]
 
 { #category : 'action' }
 Game >> rollDices [
 
 	| rolledNumber |
-	rolledNumber := dices
-		                inject: 0
-		                into: [ :total :aDice | total + aDice roll ].
+	rolledNumber := dices sum: [ :aDice | aDice roll ].
+
 	^ rolledNumber
 ]

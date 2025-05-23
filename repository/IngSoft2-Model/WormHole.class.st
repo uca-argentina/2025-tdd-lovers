@@ -67,18 +67,18 @@ WormHole >> fallsInto: aLength [
 			'A Worm Hole cannot fall outside of its Boards length' ]
 ]
 
-{ #category : 'comparing' }
-WormHole >> hasAnEndingAt: aPosition [
-
-	aPosition == beginning ifTrue: [ ^ end ].
-	aPosition == end ifTrue: [ ^ beginning ].
-
-	^ aPosition
-]
-
 { #category : 'initialization' }
 WormHole >> initializeBetween: aBeginning and: anEnd [
 
 	beginning := aBeginning.
 	end := anEnd
+]
+
+{ #category : 'comparing' }
+WormHole >> moveIfEndPointAt: aPosition [
+
+	aPosition == beginning ifTrue: [ ^ end ].
+	aPosition == end ifTrue: [ ^ beginning ].
+
+	^ aPosition
 ]

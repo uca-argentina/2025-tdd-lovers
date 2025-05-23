@@ -61,9 +61,8 @@ Board >> initializeWith: aLength and: aWormHole [
 	wormHole := aWormHole
 ]
 
-{ #category : 'validation' }
-Board >> validate: aPosition [
+{ #category : 'accessing' }
+Board >> moveIfWormHoleAt: aPosition [
 
-	(self hasReachTheFinalSquare: aPosition) ifTrue: [ ^ length ].
-	^ wormHole hasAnEndingAt: aPosition
+	^ wormHole moveIfEndPointAt: aPosition
 ]

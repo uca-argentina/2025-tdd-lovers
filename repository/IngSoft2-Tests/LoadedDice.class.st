@@ -3,7 +3,10 @@
 "
 Class {
 	#name : 'LoadedDice',
-	#superclass : 'Dice',
+	#superclass : 'Object',
+	#instVars : [
+		'loadedSide'
+	],
 	#category : 'IngSoft2-Tests',
 	#package : 'IngSoft2-Tests'
 }
@@ -17,6 +20,11 @@ LoadedDice class >> toRoll: aSide [
 { #category : 'initialization' }
 LoadedDice >> initializeToRoll: aSide [
 
-	numberOfSides := aSide.
-	initialSide := aSide
+	loadedSide := aSide.
+]
+
+{ #category : 'functions' }
+LoadedDice >> roll [
+
+	^ loadedSide
 ]

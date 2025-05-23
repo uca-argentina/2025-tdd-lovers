@@ -15,7 +15,8 @@ ShipTest >> testWhenAShipMakesOneMoveOfTwoSquaresThenItsPositionIsTwo [
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 2.
 	aSetDice := LoadedDice toRoll: sideToRoll.
-	self assert: (aShip move: aSetDice roll on: aBoard) equals: 2
+	aShip move: aSetDice roll.
+	self assert: aShip actualPosition equals: 2
 ]
 
 { #category : 'tests' }
@@ -28,8 +29,9 @@ ShipTest >> testWhenAShipMakesTwoMovesOfOneSquareThenItsPositionIsTwo [
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 1.
 	aSetDice := LoadedDice toRoll: sideToRoll.
-	aShip move: aSetDice roll on: aBoard.
-	self assert: (aShip move: aSetDice roll on: aBoard) equals: 2
+	aShip move: aSetDice roll.
+	aShip move: aSetDice roll.
+	self assert: aShip actualPosition equals: 2
 ]
 
 { #category : 'tests' }
@@ -42,5 +44,6 @@ ShipTest >> testWhenAShipMovesOneSquareThenItsPositionIsOne [
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 1.
 	aSetDice := LoadedDice toRoll: sideToRoll.
-	self assert: (aShip move: aSetDice roll on: aBoard) equals: 1
+	aShip move: aSetDice roll.
+	self assert: aShip actualPosition equals: 1
 ]
