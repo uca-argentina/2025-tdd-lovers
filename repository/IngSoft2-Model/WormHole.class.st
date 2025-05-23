@@ -77,8 +77,9 @@ WormHole >> initializeBetween: aBeginning and: anEnd [
 { #category : 'comparing' }
 WormHole >> moveIfEndPointAt: aPosition [
 
-	aPosition == beginning ifTrue: [ ^ end ].
-	aPosition == end ifTrue: [ ^ beginning ].
+
+	(aPosition squareEquals: beginning) ifTrue: [^ aPosition adjustSquare: end ].
+	(aPosition squareEquals: end) ifTrue: [ ^ aPosition adjustSquare: beginning ].
 
 	^ aPosition
 ]

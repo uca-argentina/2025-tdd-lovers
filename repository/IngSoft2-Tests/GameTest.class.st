@@ -48,6 +48,38 @@ GameTest >> testWhenAPlayerTryToRollTheDicesWhenTheGameHasFinishedThenItFails [
 ]
 
 { #category : 'tests' }
+GameTest >> testWhenAShipMakesOneLapOnTheBoardThenThePositionChangesAccordingly [
+
+	| fiveSquares aWormHole aBlueShip aBoard someShips someDices aSetDice twoLaps aBlackShip sideToRoll aGame expectedPosition |
+	fiveSquares := 5.
+	twoLaps := 2.
+	aWormHole := WormHole between: 2 and: 3.
+	expectedPosition := Position at: 1 in: 2.
+
+	aBlueShip := Ship called: 'BlueShip'.
+	aBlackShip := Ship called: 'BlackShip'.
+	sideToRoll := 6.
+	aSetDice := LoadedDice toRoll: sideToRoll.
+	aBoard := Board with: fiveSquares and: aWormHole.
+
+	someShips := OrderedCollection new.
+	someDices := OrderedCollection new.
+	someShips add: aBlueShip.
+	someShips add: aBlackShip.
+	someDices add: aSetDice.
+
+	aGame := Game
+		         with: aBoard
+		         for: twoLaps
+		         and: someShips
+		         and: someDices.
+
+	aGame nextTurn.
+
+	self assert: (aBlueShip actualPosition equals: expectedPosition)
+]
+
+{ #category : 'tests' }
 GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 
 	| fiveSquares aWormHole aGame expectedDetails sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices oneLap |
@@ -73,7 +105,7 @@ GameTest >> testWhenAShipMovesOneSquareThenTheBoardIsPrintedCorrectly [
 		         and: someDices.
 
 	expectedDetails := 'Winner: There is not a winner yet' , String cr
-	                   , 'BlackShip: 0' , String cr , 'BlueShip: 1'
+	                   , 'BlackShip: Lap: 1 Square: 0' , String cr , 'BlueShip: Lap: 1 Square: 1'
 	                   , String cr.
 
 	aGame nextTurn.
@@ -138,8 +170,8 @@ GameTest >> testWhenTheGameEndsThenTheWinnerIsShownOnTheLeaderBoard [
 		         and: someShips
 		         and: someDices.
 
-	expectedDetails := 'Winner: BlueShip' , String cr , 'BlackShip: 3'
-	                   , String cr , 'BlueShip: 5' , String cr.
+	expectedDetails := 'Winner: BlueShip' , String cr , 'BlackShip: Lap: 1 Square: 3'
+	                   , String cr , 'BlueShip: Lap: 2 Square: 0' , String cr.
 
 	aGame nextTurn.
 	aGame nextTurn.

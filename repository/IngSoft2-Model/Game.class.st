@@ -83,8 +83,9 @@ Game >> nextTurn [
 	shipToMove := ships removeFirst.
 	rolledNumber := self rollDices.
 	shipInitialPosition := shipToMove actualPosition.
-	shipFinalPosition := shipInitialPosition + rolledNumber.
-	(board hasReachTheFinalSquare: shipFinalPosition) ifTrue: [ self finish ].
+	shipFinalPosition := board update: shipInitialPosition with: rolledNumber.
+	(shipFinalPosition hasCompleted: laps) ifTrue: [
+		self finish ].
 	shipNewPosition := board moveIfWormHoleAt: shipFinalPosition.
 	shipToMove moveTo: shipNewPosition.
 	ships add: shipToMove.

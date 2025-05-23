@@ -27,7 +27,7 @@ WormHoleTest >> testWhenAShipLandsOnTheBeginningOfAWormHoleThenItEndsUpAtTheEndO
 	aSetDice := LoadedDice toRoll: sideToRoll.
 	aShip move: aSetDice roll.
 	aShip moveTo: (aBoard moveIfWormHoleAt: aShip actualPosition).
-	self assert: aShip actualPosition equals: 10
+	self assert: aShip actualSquare equals: 10
 ]
 
 { #category : 'tests' }
@@ -42,7 +42,7 @@ WormHoleTest >> testWhenAShipLandsOnTheEndOfAWormHoleThenItEndsUpAtTheBeginningO
 	aSetDice := LoadedDice toRoll: sideToRoll.
 	aShip move: aSetDice roll.
 	aShip moveTo: (aBoard moveIfWormHoleAt: aShip actualPosition).
-	self assert: aShip actualPosition equals: 2
+	self assert: aShip actualSquare equals: 2
 ]
 
 { #category : 'tests' }

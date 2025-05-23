@@ -25,6 +25,12 @@ Ship >> actualPosition [
 ]
 
 { #category : 'accessing' }
+Ship >> actualSquare [
+
+	^ position actualSquare
+]
+
+{ #category : 'accessing' }
 Ship >> details [
 
 	^ name , ': ' , position asString
@@ -34,13 +40,13 @@ Ship >> details [
 Ship >> initializeCalled: aName [
 
 	name := aName.
-	position := 0
+	position := Position at: 0 in: 1
 ]
 
 { #category : 'update' }
-Ship >> move: aPosition [
+Ship >> move: aRolledNumber [
 
-	position := position + aPosition
+	position := position addSquare: aRolledNumber
 ]
 
 { #category : 'update' }

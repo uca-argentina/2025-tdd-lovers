@@ -47,13 +47,6 @@ Board class >> with: aLength and: aWormHole [
 	^ self new initializeWith: aLength and: aWormHole
 ]
 
-{ #category : 'validation' }
-Board >> hasReachTheFinalSquare: aPosition [
-
-	aPosition >= length ifTrue: [ ^ true ].
-	^ false
-]
-
 { #category : 'initialization' }
 Board >> initializeWith: aLength and: aWormHole [
 
@@ -65,4 +58,12 @@ Board >> initializeWith: aLength and: aWormHole [
 Board >> moveIfWormHoleAt: aPosition [
 
 	^ wormHole moveIfEndPointAt: aPosition
+]
+
+{ #category : 'updating' }
+Board >> update: aPosition with: aRolledNumber [
+
+	| newPosition |
+	newPosition := aPosition add: aRolledNumber with: length.
+	^ newPosition
 ]
