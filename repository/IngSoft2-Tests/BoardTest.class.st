@@ -16,52 +16,52 @@ BoardTest >> should: anErrorBlock raise: anErrorClass withMessageText: anErrorMe
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenABoardIsCreatedAndEndsBeforeTheEndingOfItsBlackHoleThenInvalid [
+BoardTest >> testWhenABoardIsCreatedAndEndsBeforeTheEndingOfItsWormHoleThenInvalid [
 
-	| twentySquares aBlackHole |
+	| twentySquares aWormHole |
 	twentySquares := 20.
-	aBlackHole := BlackHole between: 15 and: 30.
+	aWormHole := WormHole between: 15 and: 30.
 	self
-		should: [ Board with: twentySquares and: aBlackHole ]
+		should: [ Board with: twentySquares and: aWormHole ]
 		raise: Error
 		withMessageText:
-		'A Board cannot end before the ending of its Black Hole'
+		'A Board cannot end before the ending of its Worm Hole'
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenABoardIsCreatedAndItsBlackHoleEndsAtTheLastSquareThenInvalid [
+BoardTest >> testWhenABoardIsCreatedAndItsWormHoleEndsAtTheLastSquareThenInvalid [
 
 	| twentySquares aBlackHole |
 	twentySquares := 20.
-	aBlackHole := BlackHole between: 15 and: 20.
+	aBlackHole := WormHole between: 15 and: 20.
 	self
 		should: [ Board with: twentySquares and: aBlackHole ]
 		raise: Error
 		withMessageText:
-		'A Black Hole cannot end at the end of its Board'
+		'A Worm Hole cannot end at the end of its Board'
 ]
 
 { #category : 'tests' }
-BoardTest >> testWhenABoardIsCreatedAndTheBlackHoleFallsOutsideOfTheDimentionThenInvalid [
+BoardTest >> testWhenABoardIsCreatedAndTheWormHoleFallsOutsideOfTheDimentionThenInvalid [
 
-	| twentySquares aBlackHole |
+	| twentySquares aWormHole |
 	twentySquares := 20.
-	aBlackHole := BlackHole between: 25 and: 30.
+	aWormHole := WormHole between: 25 and: 30.
 	self
-		should: [ Board with: twentySquares and: aBlackHole ]
+		should: [ Board with: twentySquares and: aWormHole ]
 		raise: Error
 		withMessageText:
-		'A Black Hole cannot fall outside of its Boards dimention'
+		'A Worm Hole cannot fall outside of its Boards length'
 ]
 
 { #category : 'tests' }
 BoardTest >> testWhenABoardIsCreatedWithLessThanTwoSquaresThenInvalid [
 
-	| aDimention aBlackHole |
-	aDimention := -1.
-	aBlackHole := BlackHole between: 1 and: 2.
+	| aLength aWormHole |
+	aLength := -1.
+	aWormHole := WormHole between: 1 and: 2.
 	self
-		should: [ Board with: aDimention and: aBlackHole ]
+		should: [ Board with: aLength and: aWormHole ]
 		raise: Error
 		withMessageText: 'Board must have at least two squares'
 ]
