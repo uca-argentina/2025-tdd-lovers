@@ -8,39 +8,42 @@ Class {
 { #category : 'tests' }
 ShipTest >> testWhenAShipMakesOneMoveOfTwoSquaresThenItsPositionIsTwo [
 
-	| aBoard aShip twentySquares aSetDice aBlackHole sideToRoll |
+	| aBoard aShip twentySquares aSetDice aWormHole sideToRoll |
 	twentySquares := 20.
-	aBlackHole := BlackHole between: 3 and: 10.
-	aBoard := Board with: twentySquares and: aBlackHole.
+	aWormHole := WormHole between: 3 and: 10.
+	aBoard := Board with: twentySquares and: aWormHole.
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 2.
 	aSetDice := LoadedDice toRoll: sideToRoll.
-	self assert: (aShip move: aSetDice roll on: aBoard) equals: 2
+	aShip move: aSetDice roll.
+	self assert: aShip actualSquare equals: 2
 ]
 
 { #category : 'tests' }
 ShipTest >> testWhenAShipMakesTwoMovesOfOneSquareThenItsPositionIsTwo [
 
-	| aBoard aShip twentySquares aSetDice aBlackHole sideToRoll |
+	| aBoard aShip twentySquares aSetDice aWormHole sideToRoll |
 	twentySquares := 20.
-	aBlackHole := BlackHole between: 3 and: 10.
-	aBoard := Board with: twentySquares and: aBlackHole.
+	aWormHole := WormHole between: 3 and: 10.
+	aBoard := Board with: twentySquares and: aWormHole.
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 1.
 	aSetDice := LoadedDice toRoll: sideToRoll.
-	aShip move: aSetDice roll on: aBoard.
-	self assert: (aShip move: aSetDice roll on: aBoard) equals: 2
+	aShip move: aSetDice roll.
+	aShip move: aSetDice roll.
+	self assert: aShip actualSquare equals: 2
 ]
 
 { #category : 'tests' }
 ShipTest >> testWhenAShipMovesOneSquareThenItsPositionIsOne [
 
-	| aBoard aShip twentySquares aSetDice aBlackHole sideToRoll |
+	| aBoard aShip twentySquares aSetDice aWormHole sideToRoll |
 	twentySquares := 20.
-	aBlackHole := BlackHole between: 2 and: 10.
-	aBoard := Board with: twentySquares and: aBlackHole.
+	aWormHole := WormHole between: 2 and: 10.
+	aBoard := Board with: twentySquares and: aWormHole.
 	aShip := Ship called: 'BlueShip'.
 	sideToRoll := 1.
 	aSetDice := LoadedDice toRoll: sideToRoll.
-	self assert: (aShip move: aSetDice roll on: aBoard) equals: 1
+	aShip move: aSetDice roll.
+	self assert: aShip actualSquare equals: 1
 ]

@@ -5,65 +5,65 @@ Class {
 	#name : 'Board',
 	#superclass : 'Object',
 	#instVars : [
-		'dimention',
-		'blackHole'
+		'length',
+		'wormHole'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
 }
 
 { #category : 'validation' }
-Board class >> numberOfDimentionIsValid: aDimention [
+Board class >> lengthIsValid: aLength [
 
-	aDimention < 2 ifTrue: [
+	aLength < 2 ifTrue: [
 		Error signal: 'Board must have at least two squares' ]
 ]
 
 { #category : 'validation' }
-Board class >> validate: aBlackHole fallsInto: aDimention [
+Board class >> validate: aWormHole fallsInto: aLength [
 
-	aBlackHole fallsInto: aDimention
+	aWormHole fallsInto: aLength
 ]
 
 { #category : 'validation' }
-Board class >> validate: aDimention isNotEqualToTheEndOf: aBlackHole [
+Board class >> validate: aLength isNotEqualToTheEndOf: aWormHole [
 
-	aBlackHole endsAt: aDimention
+	aWormHole endsAt: aLength
 ]
 
 { #category : 'validation' }
-Board class >> validate: aDimention isSmallerThanTheEndingOf: aBlackHole [
+Board class >> validate: aLength isSmallerThanTheEndingOf: aWormHole [
 
-	aBlackHole endsBefore: aDimention
+	aWormHole endsBefore: aLength
 ]
 
 { #category : 'creation' }
-Board class >> with: aDimention and: aBlackHole [
+Board class >> with: aLength and: aWormHole [
 
-	self numberOfDimentionIsValid: aDimention.
-	self validate: aBlackHole fallsInto: aDimention.
-	self validate: aDimention isSmallerThanTheEndingOf: aBlackHole.
-	self validate: aDimention isNotEqualToTheEndOf: aBlackHole.
-	^ self new initializeWith: aDimention and: aBlackHole
-]
-
-{ #category : 'validation' }
-Board >> hasReachTheFinalSquare: aPosition [
-
-	aPosition >= dimention ifTrue: [ ^ true ].
-	^ false
+	self lengthIsValid: aLength.
+	self validate: aWormHole fallsInto: aLength.
+	self validate: aLength isSmallerThanTheEndingOf: aWormHole.
+	self validate: aLength isNotEqualToTheEndOf: aWormHole.
+	^ self new initializeWith: aLength and: aWormHole
 ]
 
 { #category : 'initialization' }
-Board >> initializeWith: aDimention and: aBlackHole [
+Board >> initializeWith: aLength and: aWormHole [
 
-	dimention := aDimention.
-	blackHole := aBlackHole
+	length := aLength.
+	wormHole := aWormHole
 ]
 
-{ #category : 'validation' }
-Board >> validate: aPosition [
+{ #category : 'accessing' }
+Board >> moveIfWormHoleAt: aPosition [
 
-	(self hasReachTheFinalSquare: aPosition) ifTrue: [ ^ dimention ].
-	^ blackHole hasAnEndingAt: aPosition
+	^ wormHole moveIfEndPointAt: aPosition
+]
+
+{ #category : 'updating' }
+Board >> update: aPosition with: aRolledNumber [
+
+	| newPosition |
+	newPosition := aPosition add: aRolledNumber with: length.
+	^ newPosition
 ]

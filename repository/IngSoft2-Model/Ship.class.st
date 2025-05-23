@@ -19,6 +19,18 @@ Ship class >> called: aName [
 ]
 
 { #category : 'accessing' }
+Ship >> actualPosition [
+
+	^ position
+]
+
+{ #category : 'accessing' }
+Ship >> actualSquare [
+
+	^ position actualSquare
+]
+
+{ #category : 'accessing' }
 Ship >> details [
 
 	^ name , ': ' , position asString
@@ -28,30 +40,22 @@ Ship >> details [
 Ship >> initializeCalled: aName [
 
 	name := aName.
-	position := 0
+	position := Position at: 0 in: 1
 ]
 
 { #category : 'update' }
-Ship >> move: aPosition on: aBoard [
+Ship >> move: aRolledNumber [
 
-	| aNewPosition |
-	aNewPosition := position + aPosition.
-	position := aBoard validate: aNewPosition.
-	^ position
+	position := position addSquare: aRolledNumber
 ]
 
 { #category : 'update' }
-Ship >> move: aPosition on: aBoard in: aGame [
+Ship >> moveTo: aPosition [
 
-	| aNewPosition |
-	aNewPosition := position + aPosition.
-	(aBoard hasReachTheFinalSquare: aNewPosition) ifTrue: [ aGame finish ].
-	position := aBoard validate: aNewPosition.
-	^ position
+	position := aPosition
 ]
 
-{ #category : 'update' }
-Ship >> youWon [
-
-	^ name := '(Winner) ' , name
+{ #category : 'accessing' }
+Ship >> name [
+	^ name
 ]
