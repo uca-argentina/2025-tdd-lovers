@@ -38,3 +38,9 @@ Dice >> roll [
 
 	^ (initialSide to: numberOfSides) atRandom
 ]
+
+{ #category : 'functions' }
+Dice >> rollMaximum [
+
+	^ numberOfSides
+]

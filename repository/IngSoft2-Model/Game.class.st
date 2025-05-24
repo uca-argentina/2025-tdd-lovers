@@ -16,6 +16,12 @@ Class {
 	#package : 'IngSoft2-Model'
 }
 
+{ #category : 'creation' }
+Game class >> fuel: someShips with: aFuelQuantity [
+
+	someShips do: [ :aShip | aShip fuel: aFuelQuantity ]
+]
+
 { #category : 'validation' }
 Game class >> hasDices: someDices [
 
@@ -35,6 +41,15 @@ Game class >> hasShips: someShips [
 
 	someShips size < 2 ifTrue: [
 		Error signal: 'The Game needs at least two ship to start.' ]
+]
+
+{ #category : 'creation' }
+Game class >> maximumRoll: someDices [
+
+	| rolledNumber |
+	rolledNumber := someDices sum: [ :aDice | aDice rollMaximum ].
+
+	^ rolledNumber
 ]
 
 { #category : 'creation' }
@@ -79,16 +94,10 @@ Game >> initializeWith: aBoard for: someLaps and: someShips and: someDices [
 { #category : 'action' }
 Game >> nextTurn [
 
-	| shipToMove rolledNumber shipNewPosition shipInitialPosition shipFinalPosition |
+	| shipToMove |
 	self canStillPlay.
 	shipToMove := ships removeFirst.
-	rolledNumber := self rollDices.
-	shipInitialPosition := shipToMove actualPosition.
-	shipFinalPosition := board update: shipInitialPosition with: rolledNumber.
-	(shipFinalPosition hasCompleted: laps) ifTrue: [
-		self finish ].
-	shipNewPosition := board moveIfWormHoleAt: shipFinalPosition.
-	shipToMove moveTo: shipNewPosition.
+	self simulateMove: shipToMove.
 	ships add: shipToMove.
 	finished ifTrue: [ winner := shipToMove ]
 ]
@@ -114,4 +123,22 @@ Game >> rollDices [
 	rolledNumber := dices sum: [ :aDice | aDice roll ].
 
 	^ rolledNumber
+]
+
+{ #category : 'action' }
+Game >> simulateMove: aShip [
+
+	| rolledNumber shipInitialPosition shipFinalPosition shipNewPosition squaresTraveled |
+	rolledNumber := self rollDices.
+	shipInitialPosition := aShip actualPosition.
+	shipFinalPosition := board
+		                     update: shipInitialPosition
+		                     with: rolledNumber.
+	(shipFinalPosition hasCompleted: laps) ifTrue: [ self finish ].
+	shipNewPosition := board moveIfWormHoleAt: shipFinalPosition.
+	squaresTraveled := shipInitialPosition
+		                   squaresAwayFrom: shipNewPosition
+		                   with: board length.
+	aShip consumeFuel: squaresTraveled.
+	aShip moveTo: shipNewPosition
 ]

@@ -55,6 +55,12 @@ Board >> initializeWith: aLength and: aWormHole [
 ]
 
 { #category : 'accessing' }
+Board >> length [
+
+	^ length
+]
+
+{ #category : 'accessing' }
 Board >> moveIfWormHoleAt: aPosition [
 
 	^ wormHole moveIfEndPointAt: aPosition

@@ -207,7 +207,8 @@ GameTest >> testWhenTheGameIsCreatdesWithOneDiceThenAllTheShipsFuelEqualsTheMaxi
 		and: someShips
 		and: someDices.
 
-	self assert: aBlueShip fuelLeft equals: maximumRolledNumber * 2
+	self assert: aBlueShip fuelLeft equals: maximumRolledNumber * 2.
+	self assert: aBlackShip fuelLeft equals: maximumRolledNumber * 2
 ]
 
 { #category : 'tests' }
@@ -240,7 +241,8 @@ GameTest >> testWhenTheGameIsCreatdesWithTwoDicesThenAllTheShipsFuelEqualsTheMax
 		and: someShips
 		and: someDices.
 
-	self assert: aBlueShip fuelLeft equals: maximumRolledNumber * 2
+	self assert: aBlueShip fuelLeft equals: maximumRolledNumber * 2.
+	self assert: aBlackShip fuelLeft equals: maximumRolledNumber * 2
 ]
 
 { #category : 'tests' }

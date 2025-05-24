@@ -28,3 +28,9 @@ LoadedDice >> roll [
 
 	^ loadedSide
 ]
+
+{ #category : 'functions' }
+LoadedDice >> rollMaximum [
+
+	^ loadedSide
+]
