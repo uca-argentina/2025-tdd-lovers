@@ -43,6 +43,7 @@ Game class >> with: aBoard for: someLaps and: someShips and: someDices [
 	self hasDices: someDices.
 	self hasShips: someShips.
 	self hasLaps: someLaps.
+	self fuel: someShips with: (self maximumRoll: someDices) * 2. 
 	^ self new initializeWith: aBoard for: someLaps and: someShips and: someDices
 ]
 

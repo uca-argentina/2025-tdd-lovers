@@ -18,7 +18,7 @@ Position class >> at: aSquare in: aLap [
 	^ self new initializeAt: aSquare in: aLap
 ]
 
-{ #category : 'compare' }
+{ #category : 'comparing' }
 Position >> actualSquare [
 
 	^ square
@@ -72,20 +72,20 @@ Position >> hasCompleted: someLaps [
 	^ someLaps < lap
 ]
 
-{ #category : 'accessing' }
+{ #category : 'initialization' }
 Position >> initializeAt: aSquare in: aLap [
 
 	square := aSquare.
 	lap := aLap
 ]
 
-{ #category : 'compare' }
+{ #category : 'comparing' }
 Position >> lapsEquals: aLap [
 
 	^ lap = aLap
 ]
 
-{ #category : 'compeare' }
+{ #category : 'comparing' }
 Position >> squareEquals: aSquare [
 
 	^ square = aSquare

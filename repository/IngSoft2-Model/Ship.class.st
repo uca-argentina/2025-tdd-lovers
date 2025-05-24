@@ -6,7 +6,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'position',
-		'name'
+		'name',
+		'fuel'
 	],
 	#category : 'IngSoft2-Model',
 	#package : 'IngSoft2-Model'
@@ -36,11 +37,24 @@ Ship >> details [
 	^ name , ': ' , position asString
 ]
 
+{ #category : 'accessing' }
+Ship >> fuel: aFuelQuantity [
+
+	fuel := aFuelQuantity
+]
+
+{ #category : 'accessing' }
+Ship >> fuelLeft [
+
+	^ fuel
+]
+
 { #category : 'initialization' }
 Ship >> initializeCalled: aName [
 
 	name := aName.
-	position := Position at: 0 in: 1
+	position := Position at: 0 in: 1.
+	fuel := 0.
 ]
 
 { #category : 'update' }

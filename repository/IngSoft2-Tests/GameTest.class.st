@@ -181,6 +181,69 @@ GameTest >> testWhenTheGameEndsThenTheWinnerIsShownOnTheLeaderBoard [
 ]
 
 { #category : 'tests' }
+GameTest >> testWhenTheGameIsCreatdesWithOneDiceThenAllTheShipsFuelEqualsTheMaximumRolledNumberTimesTwo [
+
+	| fiveSquares aWormHole aBlueShip aBoard someShips someDices oneLap twoSides aTwoSidedDice aBlackShip maximumRolledNumber |
+	fiveSquares := 5.
+	twoSides := 2.
+	oneLap := 1.
+	maximumRolledNumber := twoSides.
+
+	aWormHole := WormHole between: 1 and: 2.
+
+	aBlueShip := Ship called: 'BlueShip'.
+	aBlackShip := Ship called: 'BlackShip'.
+	aTwoSidedDice := Dice with: twoSides.
+	aBoard := Board with: fiveSquares and: aWormHole.
+
+	someShips := OrderedCollection new.
+	someDices := OrderedCollection new.
+	someShips add: aBlueShip.
+	someShips add: aBlackShip.
+	someDices add: aTwoSidedDice.
+	Game
+		with: aBoard
+		for: oneLap
+		and: someShips
+		and: someDices.
+
+	self assert: aBlueShip fuelLeft equals: maximumRolledNumber * 2
+]
+
+{ #category : 'tests' }
+GameTest >> testWhenTheGameIsCreatdesWithTwoDicesThenAllTheShipsFuelEqualsTheMaximumRolledNumberTimesTwo [
+
+	| fiveSquares aWormHole aBlueShip aBoard someShips someDices oneLap twoSides aTwoSidedDice aFourSidedDice fourSides aBlackShip maximumRolledNumber |
+	fiveSquares := 5.
+	twoSides := 2.
+	fourSides := 4.
+	oneLap := 1.
+	maximumRolledNumber := twoSides + fourSides.
+
+	aWormHole := WormHole between: 1 and: 2.
+
+	aBlueShip := Ship called: 'BlueShip'.
+	aBlackShip := Ship called: 'BlackShip'.
+	aTwoSidedDice := Dice with: twoSides.
+	aFourSidedDice := Dice with: fourSides.
+	aBoard := Board with: fiveSquares and: aWormHole.
+
+	someShips := OrderedCollection new.
+	someDices := OrderedCollection new.
+	someShips add: aBlueShip.
+	someShips add: aBlackShip.
+	someDices add: aTwoSidedDice.
+	someDices add: aFourSidedDice.
+	Game
+		with: aBoard
+		for: oneLap
+		and: someShips
+		and: someDices.
+
+	self assert: aBlueShip fuelLeft equals: maximumRolledNumber * 2
+]
+
+{ #category : 'tests' }
 GameTest >> testWhenTheGameWithMultipleLapsEndsThenTheWinnerIsShownOnTheLeaderBoard [
 
 	| fiveSquares aWormHole aGame expectedDetails sideToRoll aBlueShip aBlackShip aLoadedDice aBoard someShips someDices fourLaps |
@@ -205,8 +268,9 @@ GameTest >> testWhenTheGameWithMultipleLapsEndsThenTheWinnerIsShownOnTheLeaderBo
 		         and: someShips
 		         and: someDices.
 
-	expectedDetails := 'Winner: BlueShip' , String cr , 'BlackShip: Lap: 3 Square: 0'
-	                   , String cr , 'BlueShip: Lap: 5 Square: 0' , String cr.
+	expectedDetails := 'Winner: BlueShip' , String cr
+	                   , 'BlackShip: Lap: 3 Square: 0' , String cr
+	                   , 'BlueShip: Lap: 5 Square: 0' , String cr.
 
 	aGame nextTurn.
 	aGame nextTurn.
