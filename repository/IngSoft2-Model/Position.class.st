@@ -19,6 +19,12 @@ Position class >> at: aSquare in: aLap [
 ]
 
 { #category : 'comparing' }
+Position >> actualLap [
+
+	^ lap
+]
+
+{ #category : 'comparing' }
 Position >> actualSquare [
 
 	^ square
@@ -89,4 +95,14 @@ Position >> lapsEquals: aLap [
 Position >> squareEquals: aSquare [
 
 	^ square = aSquare
+]
+
+{ #category : 'comparing' }
+Position >> squaresAwayFrom: aPosition with: aBoardLength [
+
+	| squaresTraveled |
+	squaresTraveled := aPosition actualLap * aBoardLength
+	                   + aPosition actualSquare
+	                   - (lap * aBoardLength + square).
+	^ squaresTraveled
 ]

@@ -31,6 +31,12 @@ Ship >> actualSquare [
 	^ position actualSquare
 ]
 
+{ #category : 'update' }
+Ship >> consumeFuel: squaresTraveled [
+
+	fuel := fuel - squaresTraveled
+]
+
 { #category : 'accessing' }
 Ship >> details [
 
